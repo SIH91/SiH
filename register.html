@@ -115,17 +115,18 @@
 
 
                         <div class="form-group">
-                            <label for="location">
-                                Village / Town
-                            </label>
-
-                            <input
-                                type="text"
-                                id="location"
-                                name="location"
-                                placeholder="Enter your village or town"
-                                required
-                            >
+                            <label for="location">Business Address / Village / Town</label>
+                            <div class="address-input-wrapper">
+                                <input type="text" id="location" name="location"
+                                    placeholder="Start typing a Telangana location or PIN code"
+                                    autocomplete="off" aria-autocomplete="list"
+                                    aria-controls="location-suggestions" aria-expanded="false"
+                                    aria-describedby="location-help location-status" required>
+                                <ul id="location-suggestions" class="location-suggestions" role="listbox"
+                                    aria-label="Telangana address suggestions" hidden></ul>
+                            </div>
+                            <p id="location-help" class="form-help">Suggestions include Erragadda, Medchal and Kistapur.</p>
+                            <p id="location-status" class="sr-only" aria-live="polite"></p>
                         </div>
 
                         <div class="form-group">

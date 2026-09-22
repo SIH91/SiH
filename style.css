@@ -689,6 +689,19 @@ footer {
     transition: all 0.2s ease;
 }
 
+.address-input-wrapper { position: relative; }
+
+.location-suggestions {
+    position: absolute; z-index: 10; top: calc(100% + 6px); right: 0; left: 0;
+    overflow: hidden; margin: 0; padding: 6px; list-style: none; background: white;
+    border: 1px solid #bbf7d0; border-radius: 8px; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.location-suggestions li { padding: 10px 12px; border-radius: 6px; color: #374151; cursor: pointer; font-size: 14px; }
+.location-suggestions li:hover, .location-suggestions li[aria-selected="true"] { background: #f0fdf4; color: #15803d; }
+.form-help { color: #6b7280; font-size: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+
 .form-group input:focus,
 .form-group select:focus {
     outline: none;

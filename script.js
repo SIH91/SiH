@@ -7,6 +7,53 @@ function getSupabase() {
     return window.supabaseClient || null;
 }
 
+// Keyless Telangana address suggestions for the registration form. These can
+// be replaced with a server-backed provider when a restricted API key is available.
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.querySelector("#location");
+    const list = document.querySelector("#location-suggestions");
+    const status = document.querySelector("#location-status");
+    if (!input || !list || !status) return;
+
+    const addresses = [
+        ["Erragadda, Hyderabad, Telangana, 500018", "erragadda hyderabad 500018"],
+        ["Kistapur, Medchal, Telangana, 501401", "kistapur medchal 501401 5001401"],
+        ["Medchal, Telangana, 501401", "medchal hyderabad 501401 5001401"],
+        ["Hyderabad G.P.O., Telangana, 500001", "hyderabad 500001"],
+    ];
+    let matches = [], active = -1;
+    const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const close = () => { matches = []; active = -1; list.replaceChildren(); list.hidden = true; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); };
+    const choose = ([label]) => { input.value = label; status.textContent = `${label} selected.`; close(); };
+    const render = () => {
+        list.replaceChildren();
+        if (!matches.length) { list.hidden = true; input.setAttribute("aria-expanded", "false"); return; }
+        matches.forEach((address, index) => {
+            const option = document.createElement("li");
+            option.id = `location-suggestion-${index}`; option.setAttribute("role", "option");
+            option.setAttribute("aria-selected", String(index === active)); option.textContent = address[0];
+            option.addEventListener("mousedown", (event) => { event.preventDefault(); choose(address); }); list.append(option);
+        });
+        list.hidden = false; input.setAttribute("aria-expanded", "true");
+        if (active >= 0) input.setAttribute("aria-activedescendant", `location-suggestion-${active}`);
+    };
+    const update = () => {
+        const terms = normalize(input.value).split(" ").filter(Boolean);
+        matches = terms.length ? addresses.filter((address) => terms.every((term) => normalize(address.join(" ")).includes(term))) : [];
+        active = -1; status.textContent = matches.length ? `${matches.length} address suggestion${matches.length === 1 ? "" : "s"} available.` : ""; render();
+    };
+    input.addEventListener("input", update);
+    input.addEventListener("focus", () => { if (input.value.trim()) update(); });
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") return close();
+        if (!matches.length) return;
+        if (event.key === "ArrowDown") { event.preventDefault(); active = (active + 1) % matches.length; render(); }
+        if (event.key === "ArrowUp") { event.preventDefault(); active = (active - 1 + matches.length) % matches.length; render(); }
+        if (event.key === "Enter" && active >= 0) { event.preventDefault(); choose(matches[active]); }
+    });
+    input.addEventListener("blur", () => window.setTimeout(close, 150));
+});
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // ========================================
