@@ -1,4 +1,4 @@
-# GramBiz AI backend
+# LocoBiz AI backend
 
 An MVP API for the PRD's business-feasibility workflow. It accepts entrepreneur, business, and capital inputs and produces an explainable feasibility score, financial plan, scheme screening matches, risk flags, and DPR-ready structured data.
 
@@ -21,7 +21,7 @@ uvicorn backend.main:app --reload
 
 Open `http://127.0.0.1:8000/docs` to test `POST /api/v1/evaluations/analyze`.
 
-Use `POST /api/v1/chat` for the website chat widget. A greeting such as `hey` receives a neutral GramBiz greeting, never fabricated financial or scheme claims. Configure `CORS_ALLOWED_ORIGINS` with the website's origin before deployment.
+Use `POST /api/v1/chat` for the website chat widget. A greeting such as `hey` receives a neutral LocoBiz greeting, never fabricated financial or scheme claims. Configure `CORS_ALLOWED_ORIGINS` with the website's origin before deployment.
 
 ## Enable OpenAI insights
 

@@ -16,7 +16,7 @@ class EvaluationEngineTests(unittest.TestCase):
     def test_greeting_is_neutral_and_never_makes_scheme_claims(self):
         response = reply("hey", "en")
         self.assertEqual(response["intent"], "greeting")
-        self.assertIn("GramBiz", response["reply"])
+        self.assertIn("LocoBiz", response["reply"])
         self.assertNotIn("90%", response["reply"])
         self.assertFalse(response["generated_with_ai"])
 

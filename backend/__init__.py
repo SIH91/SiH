@@ -1,1 +1,1 @@
-"""GramBiz AI backend package."""
+"""LocoBiz AI backend package."""

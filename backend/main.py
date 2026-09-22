@@ -8,7 +8,7 @@ from .engine import evaluate
 from .narrative import enrich, is_configured
 from .schemas import ChatRequest, ChatResponse, EvaluationRequest, EvaluationResponse
 
-app = FastAPI(title="GramBiz AI API", version="0.1.0")
+app = FastAPI(title="LocoBiz AI API", version="0.1.0")
 allowed_origins = [origin.strip() for origin in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
@@ -34,7 +34,7 @@ def ai_status() -> dict[str, bool | str]:
 
 @app.post("/api/v1/chat", response_model=ChatResponse)
 def chat(request: ChatRequest) -> dict:
-    """Safe chat endpoint for the GramBiz interface."""
+    """Safe chat endpoint for the LocoBiz interface."""
     return reply(request.message, request.language)
 
 

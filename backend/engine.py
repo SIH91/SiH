@@ -1,4 +1,4 @@
-"""Explainable, deterministic evaluation engine for the GramBiz MVP."""
+"""Explainable, deterministic evaluation engine for the LocoBiz MVP."""
 from __future__ import annotations
 
 from datetime import datetime, timezone

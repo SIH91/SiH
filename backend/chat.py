@@ -1,4 +1,4 @@
-"""Safe, user-facing chat behavior for the GramBiz AI frontend."""
+"""Safe, user-facing chat behavior for the LocoBiz AI frontend."""
 from __future__ import annotations
 
 import json
@@ -11,7 +11,7 @@ from .narrative import is_configured
 GREETING_RE = re.compile(r"^\s*(hi|hello|hey|namaste|good\s+(morning|afternoon|evening))\s*[!.?]*\s*$", re.I)
 CHAT_SCHEMA = {
     "type": "json_schema",
-    "name": "grambiz_chat_reply",
+    "name": "locobiz_chat_reply",
     "strict": True,
     "schema": {
         "type": "object",
@@ -26,7 +26,7 @@ DISCLAIMER = "Advice is AI-assisted. Verify financing and scheme eligibility wit
 def _fallback(message: str) -> dict[str, Any]:
     if GREETING_RE.match(message):
         return {
-            "reply": "Namaste! I am GramBiz AI, your rural business planning guide. Tell me your business idea, village or town, and estimated investment, and I will help you start an evaluation.",
+            "reply": "Namaste! I am LocoBiz AI, your rural business planning guide. Tell me your business idea, village or town, and estimated investment, and I will help you start an evaluation.",
             "intent": "greeting",
             "generated_with_ai": False,
             "disclaimer": None,
@@ -50,7 +50,7 @@ def reply(message: str, language: str) -> dict[str, Any]:
         response = OpenAI().responses.create(
             model=os.getenv("OPENAI_MODEL", "gpt-5"),
             instructions=(
-                "You are GramBiz AI, a rural enterprise planning assistant. Respond in the requested language. "
+                "You are LocoBiz AI, a rural enterprise planning assistant. Respond in the requested language. "
                 "Do not invent government scheme percentages, eligibility, current market data, or loan terms. "
                 "Do not promise success or approval. Ask for business type, location, and investment when missing. "
                 "State that unverified factual claims must be checked with an authority. Keep the reply under 100 words."

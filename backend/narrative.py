@@ -8,7 +8,7 @@ from typing import Any
 
 NARRATIVE_SCHEMA = {
     "type": "json_schema",
-    "name": "grambiz_business_insights",
+    "name": "locobiz_business_insights",
     "strict": True,
     "schema": {
         "type": "object",
@@ -40,7 +40,7 @@ def enrich(assessment: dict[str, Any], language: str) -> dict[str, Any] | None:
         from openai import OpenAI
 
         instructions = (
-            "You are GramBiz AI, an assistant for rural business planning. "
+            "You are LocoBiz AI, an assistant for rural business planning. "
             "Use clear, practical language. Never promise profitability, loan approval, "
             "or scheme eligibility. Call system estimates estimates, never verified facts. "
             "The deterministic score is authoritative and must not be recalculated."
