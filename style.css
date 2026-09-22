@@ -1041,6 +1041,190 @@ footer {
     font-size: 16px;
 }
 
+/* --- AI FEASIBILITY REPORT DETAILED SECTIONS --- */
+.feasibility-section {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.feasibility-section:hover {
+    border-color: var(--primary-border);
+    box-shadow: var(--shadow-md);
+}
+
+.feasibility-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.feasibility-title span {
+    width: 44px;
+    height: 44px;
+    background: var(--primary-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.feasibility-title h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.feasibility-title p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.feasibility-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.analysis-box {
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px;
+    transition: all 0.2s ease;
+}
+
+.analysis-box:hover {
+    background: #ffffff;
+    border-color: var(--primary-border);
+}
+
+.analysis-box strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.analysis-box p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* SWOT ANALYSIS GRID & CARDS */
+.swot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.swot-card {
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.swot-card:hover {
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.swot-card:nth-child(1) {
+    border-left: 4px solid #10b981;
+}
+
+.swot-card:nth-child(2) {
+    border-left: 4px solid #f59e0b;
+}
+
+.swot-card:nth-child(3) {
+    border-left: 4px solid #3b82f6;
+}
+
+.swot-card:nth-child(4) {
+    border-left: 4px solid #ef4444;
+}
+
+.swot-card span {
+    font-size: 24px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.swot-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.swot-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* AI ADVISOR CTA IN RESULT */
+.advisor-cta {
+    margin-top: 36px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border: 1px solid var(--primary-border);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.advisor-cta .tagline {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.advisor-cta h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.advisor-cta p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.advisor-cta .report-button {
+    max-width: 250px;
+    flex-shrink: 0;
+}
+
 /* ========================================================
    AI ADVISOR (CHAT & GUIDANCE)
    ======================================================== */
@@ -1810,8 +1994,26 @@ footer {
 
     .feature-grid,
     .report-grid,
-    .output-grid {
+    .output-grid,
+    .feasibility-content,
+    .swot-grid {
         grid-template-columns: 1fr;
+    }
+
+    .advisor-cta {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 18px;
+    }
+
+    .advisor-cta p {
+        max-width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .advisor-cta .report-button {
+        max-width: 100%;
+        width: 100%;
     }
 
     .transaction-form {

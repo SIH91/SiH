@@ -180,8 +180,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const moratoriumEl = document.querySelector("#resultMoratorium");
             if (moratoriumEl) moratoriumEl.textContent = data.moratorium;
 
+            // Dynamically populate Feasibility Report & SWOT analysis
+            const category = data.business_category || data.businessCategory || "Dairy Farming";
+            const insights = generateFeasibilityReport(category, data.village, data.district, data.capital, data.project_cost || data.projectCost);
+            populateFeasibilityDOM(insights);
+
         } catch (e) {
             console.error("Error reading saved analysis", e);
+        }
+    } else {
+        // Fallback default insights when result.html is viewed directly
+        const marketReachEl = document.querySelector("#marketReach");
+        if (marketReachEl) {
+            const defaultInsights = generateFeasibilityReport("Dairy Farming", "Rampur", "Varanasi", 50000, 500000);
+            populateFeasibilityDOM(defaultInsights);
         }
     }
 
@@ -515,6 +527,168 @@ function escapeHTML(str) {
             '"': '&quot;'
         }[tag] || tag;
     });
+}
+
+// ==========================================
+// AI FEASIBILITY & SWOT GENERATION ENGINE
+// ==========================================
+function generateFeasibilityReport(category, village, district, capital, projectCost) {
+    const v = village || "Rampur";
+    const d = district || "Varanasi";
+    const cat = category || "Dairy Farming";
+
+    const reports = {
+        "Dairy Farming": {
+            marketReach: `High daily household demand across ${v} and nearby hamlets; estimated 350–600 daily household consumer base plus local tea stalls and sweet makers.`,
+            distributionChannels: `Direct farm-gate morning deliveries, village milk collection center (VCC), and supply contracts with regional milk cooperatives/chilling plants in ${d}.`,
+            opportunityAnalysis: `Unmet demand for pure unadulterated milk and value-added curd/ghee in ${v} and ${d} weekly haats. High scope to expand into paneer on festival cycles.`,
+            competitorDensity: `Moderate (3–5 informal backyard cattle owners in ${v}), but structured hygienic chilling and doorstep supply are absent.`,
+            competitivePosition: `Establish clean milking hygiene standards, doorstep morning delivery subscriptions, and direct fat-testing transparency to build trust.`,
+            pricingStrategy: `Competitive baseline ₹52–₹62/L for cow milk, ₹68–₹76/L for buffalo milk; premium 15–20% margin on clarified butter (Desi Ghee).`,
+            supplyRisk: `Fodder price fluctuations during dry summer months; access to timely veterinary vaccinations and green fodder supply.`,
+            demandRisk: `Perishability risk during summer heatwaves, mitigated by clean stainless steel cans and converting surplus into curd/ghee.`,
+            swotStrengths: `Guaranteed daily cash flow, quick turnaround on capital investment, and organic manure co-product for local fields.`,
+            swotWeaknesses: `High 365-day labor requirement, livestock vulnerability to seasonal weather changes and feed costs.`,
+            swotOpportunities: `Dairy cooperative subsidies (NABARD/DIDF), solar-powered cold milk storage units, and expansion into packaged paneer.`,
+            swotThreats: `Unseasonal heat waves affecting milk yield, sudden spike in cattle feed/husk prices.`
+        },
+        "Agriculture & Horticulture": {
+            marketReach: `Direct linkages to ${d} Krishi Upaj Mandi, local weekly village haats, and peri-urban vegetable vendors within 15 km.`,
+            distributionChannels: `Farm-gate bulk aggregators, Farmer Producer Organization (FPO) pooling, and local morning wholesale markets.`,
+            opportunityAnalysis: `High-margin shift from mono-crop cereals toward drip-irrigated polyhouse vegetables, mushrooms, or exotic cash crops tailored to ${d} market demand.`,
+            competitorDensity: `Broad competition in traditional staple grains; very low competition in high-value horticulture and organic produce.`,
+            competitivePosition: `Off-season harvesting timing (15–20 days ahead of general harvest) to command 30–40% premium market rates.`,
+            pricingStrategy: `Dynamic mandi auction pricing; direct restaurant/hostel contracts at fixed seasonal supply contracts.`,
+            supplyRisk: `Unpredictable groundwater levels, monsoon variability, and timely availability of certified seeds and organic compost.`,
+            demandRisk: `Glut periods at peak harvest driving down mandi prices; lack of accessible cold storage.`,
+            swotStrengths: `Rich soil availability, multigenerational farming familiarity, and high government PM-KUSUM solar pump support.`,
+            swotWeaknesses: `Dependence on rainfall patterns and high post-harvest transit losses without precooling.`,
+            swotOpportunities: `FPO collective bargaining, PMFBY crop insurance coverage, and micro-irrigation capital subsidies.`,
+            swotThreats: `Extreme weather events, pest outbreaks, and sudden price crashes during nationwide harvest gluts.`
+        },
+        "Retail Grocery / Kirana": {
+            marketReach: `Immediate capture of 180–300 families in ${v} plus commuting daily-wage workers within a 3–5 km radius.`,
+            distributionChannels: `Walk-in village counter, phone/WhatsApp grocery pre-orders, and doorstep delivery for elder households.`,
+            opportunityAnalysis: `Lack of branded packaged staples, hygiene essentials, cold dairy, and mobile/DTH top-up services in immediate neighborhood.`,
+            competitorDensity: `High informal presence (2–4 small kiosks), but majority suffer from frequent stockouts and lack digital UPI payments.`,
+            competitivePosition: `Maintain 100% in-stock consistency for top 50 staples, offer QR/UPI payments, and friendly micro-credit records.`,
+            pricingStrategy: `Max MRP parity with wholesale purchasing from ${d} APMC/mandi to retain 12%–18% gross margin.`,
+            supplyRisk: `Transportation costs for weekly replenishment trips to the ${d} wholesale mandi.`,
+            demandRisk: `Credit-seeking customer habits (khata) leading to delayed liquidity; post-harvest liquidity peaks.`,
+            swotStrengths: `Essential non-discretionary demand, central location visibility, low technical barrier to entry.`,
+            swotWeaknesses: `Working capital locked in slow-moving inventory; shelf-life limitations on perishable staples.`,
+            swotOpportunities: `Adding micro-ATM (AePS) cash withdrawal, seeds/fertilizer packets, and evening snack counter.`,
+            swotThreats: `E-commerce quick delivery penetration into peri-urban fringes and aggressive credit defaults.`
+        },
+        "Food Processing": {
+            marketReach: `Regional reach of 10–25 villages surrounding ${v} plus retail shelves in ${d} semi-urban centers.`,
+            distributionChannels: `Direct supply to local Kirana networks, weekly rural haats, roadside dhabas, and school canteen catering.`,
+            opportunityAnalysis: `Abundance of raw local produce (spices, mustard, pulses, seasonal fruits) converted to packaged flour, pickles, or cold-pressed oil.`,
+            competitorDensity: `Low to moderate; mostly unbranded loose grains with poor packaging and no FSSAI certifications.`,
+            competitivePosition: `Clean vacuum-seal packaging, authentic regional taste, transparent FSSAI certification and moisture-proof packaging.`,
+            pricingStrategy: `15% below national tier-1 brands while delivering 25% higher profit margin through zero intermediate broker cost.`,
+            supplyRisk: `Seasonal harvest price spikes of raw pulses/seeds; power voltage fluctuation in rural grids.`,
+            demandRisk: `Consumer preference inertia toward legacy family millers or cheap unbranded alternatives.`,
+            swotStrengths: `High value-addition markup (30–45%), long product shelf life compared to raw crops.`,
+            swotWeaknesses: `Initial machinery capital outlay, electricity phase requirements, and compliance registration needs.`,
+            swotOpportunities: `PM-FME 35% capital subsidy, ODOP (One District One Product) grant scheme, and regional brand building.`,
+            swotThreats: `Machinery breakdown delays if spare parts are only available in major state capitals.`
+        },
+        "Textiles & Tailoring": {
+            marketReach: `Direct catchment of 500+ households in ${v}, expanding to nearby schools, colleges, and festive wear buyers.`,
+            distributionChannels: `Custom customer stitching boutique, bulk school uniform orders, and festive readymade blouse/kurti counters.`,
+            opportunityAnalysis: `Severe lack of timely, high-fitting customized tailoring for women and festive seasonal wedding garments in ${v}.`,
+            competitorDensity: `Fragmented single-machine home tailors; lack of modern interlock, embroidery, and designer finishing units.`,
+            competitivePosition: `Guaranteed on-time 48-hour delivery, modern stitching machines with overlock, and catalogue design customization.`,
+            pricingStrategy: `Tiered pricing: ₹120–₹180 basic alteration/blouse, ₹400–₹900 designer suits, lucrative bulk pricing for institutional uniforms.`,
+            supplyRisk: `Thread, zipper, and fabric roll transit delays from ${d} textile markets.`,
+            demandRisk: `Cyclical festive and wedding season demand peaks (Oct–Feb) followed by monsoon lulls.`,
+            swotStrengths: `Low recurring material cost, high gross margins on skilled labor, strong community word-of-mouth.`,
+            swotWeaknesses: `Operator physical fatigue and dependency on skilled machine operators during peak wedding months.`,
+            swotOpportunities: `Mudra Shishu/Kishore loan for industrial motor machines, SHG (Self Help Group) garment supply contracts.`,
+            swotThreats: `Cheap polyester factory-made readymades from urban discount chains.`
+        },
+        "Poultry & Livestock": {
+            marketReach: `Catchment of ${v} and 10–15 surrounding hamlet meat vendors and weekly bird markets.`,
+            distributionChannels: `Direct farm-gate wholesale to local butcher shops, weekly bazaar sales, and hotel/dhaba daily supplies.`,
+            opportunityAnalysis: `Soaring demand for high-protein Desi/Kadaknath country chicken and fresh farm eggs in ${d}.`,
+            competitorDensity: `Moderate commercial broiler integrators; acute shortage of genuine organic free-range Desi bird supply.`,
+            competitivePosition: `Focus on hardy Desi bird breeds (higher disease resistance and 2x selling price per kg over broiler).`,
+            pricingStrategy: `Broiler wholesale ₹110–₹140/kg live weight; Desi country chicken commands ₹280–₹360/kg premium pricing.`,
+            supplyRisk: `Day-old-chick (DOC) quality and commercial feed cost inflation; bird flu quarantine advisories.`,
+            demandRisk: `Religious fasting months (e.g. Sawan, Navratri) where meat consumption plummets by 60–70%.`,
+            swotStrengths: `Short 35–45 day production cycle for fast capital rotation; high feed conversion efficiency.`,
+            swotWeaknesses: `High mortality risk without strict biosecurity, vaccination schedules, and climate ventilation.`,
+            swotOpportunities: `National Livestock Mission (NLM) 50% capital subsidy on poultry breeding units.`,
+            swotThreats: `Sudden bird influenza outbreaks and extreme heat waves causing heat-stroke mortality.`
+        },
+        "Handicrafts & Artisans": {
+            marketReach: `Regional tourism corridors, ${d} craft emporiums, state cultural fairs, and direct e-commerce craft platforms.`,
+            distributionChannels: `Artisan cooperative stalls, district craft exhibitions, direct bulk gifting orders, and digital social selling.`,
+            opportunityAnalysis: `Growing urban appetite for authentic terracotta, handloom weaving, bamboo craft, and eco-friendly utility decor.`,
+            competitorDensity: `Low local commercial production; traditional artisans under-monetizing through middleman exploitation.`,
+            competitivePosition: `Contemporary minimalist designs blended with ancient motifs, tagged with artisan provenance stories.`,
+            pricingStrategy: `Value-based craft pricing yielding 40–60% margins, escaping commoditized raw-material pricing.`,
+            supplyRisk: `Seasonal availability of natural clay, bamboo culms, and organic vegetable dyes during monsoon.`,
+            demandRisk: `Discretionary purchase nature; urban spending contraction or seasonal exhibition dependence.`,
+            swotStrengths: `Deep cultural heritage, unique non-reproducible manual skill, negligible machine electricity requirements.`,
+            swotWeaknesses: `Labor-intensive production velocity limits rapid scale; working capital tied up in exhibition inventory.`,
+            swotOpportunities: `PM-Vishwakarma scheme providing ₹3 Lakh subsidized credit, toolkits, and national marketing exposure.`,
+            swotThreats: `Cheap synthetic plastic replicas from industrial factories flooding local markets.`
+        },
+        "Repair & Service Workshop": {
+            marketReach: `Over 1,200 two-wheelers, tractors, and agricultural pump sets operating in ${v} and adjacent farmland.`,
+            distributionChannels: `Highway-facing workshop, on-field emergency mobile breakdown assistance, and annual tractor maintenance packages.`,
+            opportunityAnalysis: `Long distances (15–25 km) to nearest ${d} authorized service center forcing farmers to delay urgent repairs.`,
+            competitorDensity: `1–2 roadside puncture/greasing stalls with no diagnostic tools or electrical troubleshooting equipment.`,
+            competitivePosition: `Equipped with pneumatic tools, genuine OEM spare parts, transparent pricing card, and on-farm emergency callout.`,
+            pricingStrategy: `₹150–₹350 standard 2-wheeler service labor; ₹800–₹1,500 tractor hydraulic/engine overhaul labor + 15% spare parts margin.`,
+            supplyRisk: `Procurement of genuine brand spare parts, oils, and batteries from ${d} distributors.`,
+            demandRisk: `Monsoon slowdowns for general travel; peak breakdown spikes during sowing and harvesting tractor seasons.`,
+            swotStrengths: `Immediate cash settlement upon delivery, recurring customer base, resilient across all economic cycles.`,
+            swotWeaknesses: `High dependence on technician mechanical troubleshooting skill; grease and oil waste disposal.`,
+            swotOpportunities: `Electric vehicle (EV 2W/3W) retrofitting and battery charging/swapping station addition.`,
+            swotThreats: `Rapid adoption of complex electronic engine sensors requiring expensive computerized scanners.`
+        }
+    };
+
+    const fallback = {
+        marketReach: `Estimated local consumer base of 500–1,200 residents within a 5–10 km radius of ${v} and connecting weekly markets.`,
+        distributionChannels: `Direct retail sales, local village partnerships, and regional distribution to ${d} commercial hubs.`,
+        opportunityAnalysis: `High potential to bridge supply gaps for quality ${cat} services and products in ${v}.`,
+        competitorDensity: `Low to moderate; existing operations are mostly informal and lack modern customer service standards.`,
+        competitivePosition: `Superior product quality, transparent pricing, and dependable local availability tailored to rural needs.`,
+        pricingStrategy: `Affordable volume-driven pricing tailored to local purchasing power, retaining healthy 20–30% operational margins.`,
+        supplyRisk: `Dependence on timely input transport and inventory procurement from ${d} wholesale markets.`,
+        demandRisk: `Seasonal income swings linked to agricultural harvest cycles; maintain diverse product offerings.`,
+        swotStrengths: `First-mover advantage in ${v}, low fixed overheads, and strong community word-of-mouth reputation.`,
+        swotWeaknesses: `Initial working capital constraints and reliance on local distribution networks.`,
+        swotOpportunities: `Government micro-credit schemes (MUDRA / PMEGP) and expanding into neighboring rural blocks.`,
+        swotThreats: `Fluctuations in raw material costs and emergence of informal unorganized competitors.`
+    };
+
+    return reports[cat] || fallback;
+}
+
+function populateFeasibilityDOM(insights) {
+    if (!insights) return;
+    const setText = (id, text) => {
+        const el = document.querySelector("#" + id);
+        if (el && text) el.textContent = text;
+    };
+
+    setText("marketReach", insights.marketReach);
+    setText("distributionChannels", insights.distributionChannels);
+    setText("opportunityAnalysis", insights.opportunityAnalysis);
+    setText("competitorDensity", insights.competitorDensity);
+    setText("competitivePosition", insights.competitivePosition);
+    setText("pricingStrategy", insights.pricingStrategy);
+    setText("supplyRisk", insights.supplyRisk);
+    setText("demandRisk", insights.demandRisk);
+    setText("swotStrengths", insights.swotStrengths);
+    setText("swotWeaknesses", insights.swotWeaknesses);
+    setText("swotOpportunities", insights.swotOpportunities);
+    setText("swotThreats", insights.swotThreats);
 }
 // ==========================================
 // SMART FINANCIAL CALCULATOR
