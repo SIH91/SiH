@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business Feasibility Assessment | LocoBiz AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                <div class="logo-main">LocoBiz<span>AI</span></div>
+                <div class="logo-sub">Rural Micro Business Advisory</div>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="analyze.html" class="active">Feasibility Check</a></li>
+                <li><a href="advisor.html">AI Advisor</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+
+            <a href="advisor.html" class="nav-button">
+                💬 AI Advisor
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- ANALYSIS PAGE -->
+    <main class="analysis-page">
+
+        <div class="analysis-container">
+
+            <!-- HEADING -->
+            <div class="analysis-heading">
+
+                <p class="tagline">
+                    ⚡ 60-Second Business Assessment
+                </p>
+
+                <h1>
+                    Check Your Business
+                    <span>Feasibility</span>
+                </h1>
+
+                <p>
+                    Enter your location, margin money, and business type. We will instantly calculate your 90% loan coverage, eligible government scheme, and feasible project scale.
+                </p>
+
+            </div>
+
+
+            <!-- INPUT CARD -->
+            <section class="analysis-card">
+
+                <div class="analysis-card-heading">
+
+                    <h2>
+                        Tell Us About Your Business
+                    </h2>
+
+                    <p>
+                        Fill in these basic details to prepare your preliminary scheme structure.
+                    </p>
+
+                </div>
+
+
+                <form id="analysisForm">
+
+                    <!-- LOCATION -->
+                    <div class="analysis-section">
+
+                        <h3>
+                            📍 Your Location
+                        </h3>
+
+                        <div class="analysis-grid">
+
+                            <div class="form-group">
+                                <label for="village">Village Name</label>
+                                <input
+                                    type="text"
+                                    id="village"
+                                    name="village"
+                                    placeholder="e.g. Rampur"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="block">Tehsil / Block</label>
+                                <input
+                                    type="text"
+                                    id="block"
+                                    name="block"
+                                    placeholder="e.g. Sadar"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="district">District</label>
+                                <input
+                                    type="text"
+                                    id="district"
+                                    name="district"
+                                    placeholder="e.g. Varanasi"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input
+                                    type="text"
+                                    id="state"
+                                    name="state"
+                                    placeholder="e.g. Uttar Pradesh"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CAPITAL -->
+                    <div class="analysis-section">
+
+                        <h3>
+                            💰 Available Margin Capital
+                        </h3>
+
+                        <p class="section-description">
+                            The amount of your own savings or contribution available for this venture.
+                        </p>
+
+                        <div class="capital-input">
+                            <span>₹</span>
+                            <input
+                                type="number"
+                                id="capital"
+                                name="capital"
+                                placeholder="e.g. 50000"
+                                min="1000"
+                                required
+                            >
+                        </div>
+
+                        <!-- Quick Select Chips for Mobile Ease -->
+                        <div class="quick-chips">
+                            <button type="button" class="chip-btn" data-amount="25000">₹25,000</button>
+                            <button type="button" class="chip-btn" data-amount="50000">₹50,000</button>
+                            <button type="button" class="chip-btn" data-amount="100000">₹1,00,000</button>
+                            <button type="button" class="chip-btn" data-amount="250000">₹2,50,000</button>
+                            <button type="button" class="chip-btn" data-amount="500000">₹5,00,000</button>
+                        </div>
+
+                        <small>
+                            💡 Standard rural schemes require 10% entrepreneur margin, unlocking 90% bank loan coverage.
+                        </small>
+
+                    </div>
+
+
+                    <!-- BUSINESS -->
+                    <div class="analysis-section">
+
+                        <h3>
+                            🏪 Proposed Business
+                        </h3>
+
+                        <div class="form-group">
+
+                            <label for="businessCategory">
+                                Select Business Category
+                            </label>
+
+                            <select
+                                id="businessCategory"
+                                name="businessCategory"
+                                required
+                            >
+                                <option value="">Choose business type...</option>
+                                <option value="Dairy Farming">🥛 Dairy Farming (Cow/Buffalo Milk)</option>
+                                <option value="Agriculture & Horticulture">🌾 Agriculture & Horticulture</option>
+                                <option value="Retail Grocery / Kirana">🛒 Retail Grocery / Kirana Store</option>
+                                <option value="Food Processing">🍲 Food Processing & Spices</option>
+                                <option value="Textiles & Tailoring">🧵 Textiles & Garment Making</option>
+                                <option value="Poultry & Livestock">🐔 Poultry & Livestock</option>
+                                <option value="Handicrafts & Artisans">🎨 Handicrafts & Pottery</option>
+                                <option value="Repair & Service Workshop">🔧 Vehicle / Equipment Repair</option>
+                                <option value="Other Rural Enterprise">📦 Other Rural Enterprise</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+                    <div class="analysis-submit">
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Calculate Feasibility & Loan Schemes →
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- OUTPUT PREVIEW -->
+                <div class="analysis-output-preview">
+
+                    <h2>
+                        What this report will generate for you:
+                    </h2>
+
+                    <div class="output-grid">
+
+                        <div class="output-item">
+                            <span>🏗️</span>
+                            <h3>Project Feasibility</h3>
+                            <p>Calculate maximum feasible project cost based on your 10% margin.</p>
+                        </div>
+
+                        <div class="output-item">
+                            <span>🏦</span>
+                            <h3>Loan Scheme Match</h3>
+                            <p>Match with Micro Finance (≤ ₹1.4L) or Term Loan (≤ ₹50L) schemes.</p>
+                        </div>
+
+                        <div class="output-item">
+                            <span>📊</span>
+                            <h3>Tenure & Interest</h3>
+                            <p>Clear interest rate, moratorium grace period, and repayment tenure.</p>
+                        </div>
+
+                        <div class="output-item">
+                            <span>🤖</span>
+                            <h3>AI Feasibility Advice</h3>
+                            <p>Actionable guidance on local competition, pricing, and profit growth.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <h3>
+                    LocoBiz<span>AI</span>
+                </h3>
+                <p>
+                    Rural Micro Business Advisory
+                </p>
+            </div>
+
+            <div>
+                <p>© 2026 LocoBiz AI • SIH26091</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script type="module" src="superbase.js"></script>
+    <script defer src="script.js"></script>
+
+</body>
+</html>

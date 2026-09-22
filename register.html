@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register | GramBiz AI</title>
+    <title>Register | LocoBiz AI</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,14 +16,17 @@
     <header>
         <nav class="navbar">
 
-            <div class="logo">
-                GramBiz<span>AI</span>
-            </div>
+            <a href="index.html" class="logo">
+                <div class="logo-main">LocoBiz<span>AI</span></div>
+                <div class="logo-sub">Rural Micro Business Advisory</div>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
 
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#about">About</a></li>
+                <li><a href="analyze.html">Feasibility Check</a></li>
+                <li><a href="advisor.html">AI Advisor</a></li>
                 <li><a href="login.html">Login</a></li>
             </ul>
 
@@ -121,6 +124,21 @@
                                 id="location"
                                 name="location"
                                 placeholder="Enter your village or town"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password (min 6 characters)"
+                                minlength="6"
                                 required
                             >
                         </div>
@@ -337,18 +355,18 @@
             <div>
 
                 <h3>
-                    GramBiz<span>AI</span>
+                    LocoBiz<span>AI</span>
                 </h3>
 
                 <p>
-                    AI-powered support for rural entrepreneurs.
+                    Rural Micro Business Advisory
                 </p>
 
             </div>
 
             <div>
 
-                <p>© 2026 GramBiz AI</p>
+                <p>© 2026 LocoBiz AI</p>
                 <p>SIH26091</p>
 
             </div>
@@ -357,5 +375,8 @@
 
     </footer>
 
+    <script type="module" src="superbase.js"></script>
+    <script defer src="script.js"></script>
+    
 </body>
 </html>

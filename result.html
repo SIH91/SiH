@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business Feasibility Report | LocoBiz AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                <div class="logo-main">LocoBiz<span>AI</span></div>
+                <div class="logo-sub">Rural Micro Business Advisory</div>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="analyze.html">New Analysis</a></li>
+                <li><a href="advisor.html">AI Advisor</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+
+            <a href="analyze.html" class="nav-button">
+                ↻ Recalculate
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- RESULT PAGE -->
+    <main class="result-page">
+
+        <div class="result-container">
+
+            <!-- HEADER -->
+            <div class="result-heading">
+
+                <p class="tagline">
+                    ✅ FEASIBILITY REPORT READY
+                </p>
+
+                <h1>
+                    Your Business
+                    <span>Analysis Results</span>
+                </h1>
+
+                <p>
+                    Here is your tailored capital structure and recommended government loan scheme based on your 10% margin contribution.
+                </p>
+
+            </div>
+
+
+            <!-- LOCATION + BUSINESS BANNER -->
+            <section class="result-location">
+
+                <div>
+                    <p>📍 LOCATION</p>
+                    <h2 id="resultLocation">Rampur, Uttar Pradesh</h2>
+                </div>
+
+                <div>
+                    <p>🏪 BUSINESS TYPE</p>
+                    <h2 id="resultBusiness">Dairy Farming</h2>
+                </div>
+
+            </section>
+
+
+            <!-- FINANCIAL SUMMARY STATS -->
+            <section class="result-stats">
+
+                <div class="result-card">
+                    <div class="result-icon">💰</div>
+                    <p>Your Margin Capital (10%)</p>
+                    <h2 id="resultCapital">₹50,000</h2>
+                    <span>Your direct contribution</span>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">🏦</div>
+                    <p>Eligible Bank Loan (90%)</p>
+                    <h2 id="resultLoan">₹4,50,000</h2>
+                    <span>Concessional subsidized loan</span>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">🏗️</div>
+                    <p>Total Feasible Project Cost</p>
+                    <h2 id="resultProjectCost">₹5,00,000</h2>
+                    <span>100% Total Project Scale</span>
+                </div>
+
+            </section>
+
+
+            <!-- SCHEME CARD -->
+            <section class="scheme-card">
+
+                <div class="scheme-icon">
+                    🏛️
+                </div>
+
+                <div class="scheme-content">
+
+                    <p>RECOMMENDED GOVERNMENT SCHEME</p>
+                    <h2 id="resultScheme">Term Loan Scheme</h2>
+
+                    <div class="scheme-details">
+
+                        <div>
+                            <span>Subsidized Interest Rate</span>
+                            <strong id="resultInterest">8% p.a.</strong>
+                        </div>
+
+                        <div>
+                            <span>Repayment Tenure</span>
+                            <strong id="resultTenure">7 Years</strong>
+                        </div>
+
+                        <div>
+                            <span>Moratorium Period</span>
+                            <strong id="resultMoratorium">6 Months</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+<!-- AI FEASIBILITY REPORT -->
+<section class="report-preview">
+
+    <div class="report-heading">
+
+        <p class="tagline">
+            🤖 AI-POWERED HYPER-LOCAL ANALYSIS
+        </p>
+
+        <h2>
+            Business Feasibility Report
+        </h2>
+
+        <p>
+            AI analysis of your local market, competition, opportunities,
+            pricing and business risks.
+        </p>
+
+    </div>
+
+
+    <!-- MARKET REACH -->
+    <div class="feasibility-section">
+
+        <div class="feasibility-title">
+            <span>📍</span>
+
+            <div>
+                <h3>Market Reach</h3>
+                <p>
+                    Estimated customer reach and distribution opportunities
+                    within the local area.
+                </p>
+            </div>
+        </div>
+
+        <div class="feasibility-content">
+
+            <div class="analysis-box">
+                <strong>Consumer Reach</strong>
+                <p id="marketReach">
+                    AI will estimate the immediate consumer base
+                    within a 5–10 km radius.
+                </p>
+            </div>
+
+            <div class="analysis-box">
+                <strong>Distribution Channels</strong>
+                <p id="distributionChannels">
+                    Local retailers, direct customers, wholesalers
+                    and nearby markets will be analysed.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- OPPORTUNITY ANALYSIS -->
+    <div class="feasibility-section">
+
+        <div class="feasibility-title">
+            <span>💡</span>
+
+            <div>
+                <h3>Opportunity Analysis</h3>
+                <p>
+                    Identify underserved or unserved business opportunities
+                    in the selected location.
+                </p>
+            </div>
+        </div>
+
+        <div class="analysis-box">
+
+            <strong>Potential Market Opportunity</strong>
+
+            <p id="opportunityAnalysis">
+                AI will identify possible gaps in the local market
+                based on business category and location.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- COMPETITOR MAPPING -->
+    <div class="feasibility-section">
+
+        <div class="feasibility-title">
+            <span>🏪</span>
+
+            <div>
+                <h3>Competitor Mapping</h3>
+                <p>
+                    Understand the density and type of similar businesses
+                    operating in the selected block.
+                </p>
+            </div>
+        </div>
+
+        <div class="feasibility-content">
+
+            <div class="analysis-box">
+
+                <strong>Competitor Density</strong>
+
+                <p id="competitorDensity">
+                    AI will estimate the number and concentration
+                    of similar businesses in the area.
+                </p>
+
+            </div>
+
+            <div class="analysis-box">
+
+                <strong>Competitive Position</strong>
+
+                <p id="competitivePosition">
+                    The system will identify possible ways to
+                    differentiate your business.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRICING STRATEGY -->
+    <div class="feasibility-section">
+
+        <div class="feasibility-title">
+            <span>💰</span>
+
+            <div>
+                <h3>Product Market Value</h3>
+                <p>
+                    Suggested pricing approach based on local purchasing
+                    power and market conditions.
+                </p>
+            </div>
+        </div>
+
+        <div class="analysis-box">
+
+            <strong>Pricing Strategy</strong>
+
+            <p id="pricingStrategy">
+                AI will estimate a suitable local pricing range
+                and positioning strategy.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- THREAT ANALYSIS -->
+    <div class="feasibility-section">
+
+        <div class="feasibility-title">
+            <span>⚠️</span>
+
+            <div>
+                <h3>Threat Analysis</h3>
+                <p>
+                    Identify risks that could affect business operations
+                    and revenue.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="feasibility-content">
+
+            <div class="analysis-box">
+
+                <strong>Supply Chain Risks</strong>
+
+                <p id="supplyRisk">
+                    Potential supply shortages, transport issues
+                    and input-cost changes will be analysed.
+                </p>
+
+            </div>
+
+            <div class="analysis-box">
+
+                <strong>Demand Risks</strong>
+
+                <p id="demandRisk">
+                    Seasonal demand changes and dependency on
+                    individual buyers will be considered.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SWOT -->
+    <div class="feasibility-section">
+
+        <div class="feasibility-title">
+            <span>📊</span>
+
+            <div>
+                <h3>SWOT Analysis</h3>
+                <p>
+                    Business strengths, weaknesses, opportunities
+                    and threats.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="swot-grid">
+
+            <div class="swot-card">
+
+                <span>💪</span>
+
+                <h4>Strengths</h4>
+
+                <p id="swotStrengths">
+                    AI will identify strengths based on the
+                    selected business model and available capital.
+                </p>
+
+            </div>
+
+
+            <div class="swot-card">
+
+                <span>🔧</span>
+
+                <h4>Weaknesses</h4>
+
+                <p id="swotWeaknesses">
+                    AI will identify potential operational
+                    and financial weaknesses.
+                </p>
+
+            </div>
+
+
+            <div class="swot-card">
+
+                <span>🚀</span>
+
+                <h4>Opportunities</h4>
+
+                <p id="swotOpportunities">
+                    AI will identify potential growth
+                    opportunities in the local market.
+                </p>
+
+            </div>
+
+
+            <div class="swot-card">
+
+                <span>🛡️</span>
+
+                <h4>Threats</h4>
+
+                <p id="swotThreats">
+                    AI will identify external risks
+                    that may affect the business.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI ADVISOR -->
+    <div class="advisor-cta">
+
+        <div>
+
+            <p class="tagline">
+                🤖 NEXT STEP
+            </p>
+
+            <h2>
+                Need a Detailed Business Plan?
+            </h2>
+
+            <p>
+                Ask LocoBiz AI Advisor about your business,
+                market, finances and growth strategy.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-button report-button"
+            onclick="openAdvisor()"
+        >
+            Chat with AI Advisor →
+        </button>
+
+    </div>
+
+</section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <h3>
+                    LocoBiz<span>AI</span>
+                </h3>
+                <p>
+                    Rural Micro Business Advisory
+                </p>
+            </div>
+
+            <div>
+                <p>© 2026 LocoBiz AI • SIH26091</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script type="module" src="superbase.js"></script>
+    <script defer src="script.js"></script>
+
+</body>
+</html>
