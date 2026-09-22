@@ -23,6 +23,10 @@ Open `http://127.0.0.1:8000/docs` to test `POST /api/v1/evaluations/analyze`.
 
 Use `POST /api/v1/chat` for the website chat widget. A greeting such as `hey` receives a neutral LocoBiz greeting, never fabricated financial or scheme claims. Configure `CORS_ALLOWED_ORIGINS` with the website's origin before deployment.
 
+## Location fields
+
+Use `GET /api/v1/locations/search?q=Nashik` for business and entrepreneur location fields. Results default to India (`country_code=IN`) and return a display label, state, country, latitude, longitude, timezone, and population. Send the request only after at least two characters and save the selected result, not an arbitrary label. The service caches identical searches for 10 minutes and returns a clear error when the upstream provider is unavailable.
+
 ## Enable OpenAI insights
 
 1. Copy `.env.example` to `.env` (do not commit `.env`).

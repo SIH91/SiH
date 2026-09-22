@@ -1,14 +1,25 @@
 import unittest
 from types import SimpleNamespace
-from unittest.mock import MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
+
+from fastapi.testclient import TestClient
 
 from backend.engine import evaluate
 from backend.chat import reply
+from backend.main import app
 from backend.narrative import enrich, is_configured
 from backend.schemas import EvaluationRequest
 
 
 class EvaluationEngineTests(unittest.TestCase):
+    def test_location_search_returns_normalised_indian_place(self):
+        with patch("backend.main.search_locations", AsyncMock(return_value=[{
+            "id": 2869870, "name": "Nashik", "label": "Nashik, Maharashtra, India", "admin1": "Maharashtra", "country": "India", "country_code": "IN", "latitude": 19.9975, "longitude": 73.7898, "timezone": "Asia/Kolkata", "population": 1486053,
+        }])):
+            response = TestClient(app).get("/api/v1/locations/search?q=Nashik")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["results"][0]["label"], "Nashik, Maharashtra, India")
+        self.assertEqual(response.json()["results"][0]["country_code"], "IN")
     def test_ai_is_disabled_without_a_server_key(self):
         with patch.dict("os.environ", {}, clear=True):
             self.assertFalse(is_configured())

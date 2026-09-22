@@ -93,3 +93,22 @@ class ChatResponse(BaseModel):
     intent: Literal["greeting", "business_question", "needs_evaluation"]
     generated_with_ai: bool
     disclaimer: str | None = None
+
+
+class LocationResult(BaseModel):
+    id: int
+    name: str
+    label: str
+    admin1: str | None = None
+    country: str | None = None
+    country_code: str | None = None
+    latitude: float
+    longitude: float
+    timezone: str | None = None
+    population: int | None = None
+
+
+class LocationSearchResponse(BaseModel):
+    results: list[LocationResult]
+    provider: str
+    attribution: str
