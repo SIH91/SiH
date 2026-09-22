@@ -2154,6 +2154,51 @@ html[data-theme="dark"] table td {
 html[data-theme="dark"] table tr:nth-child(even) td {
     background: #292929 !important;
 }
+
+/* Replace hard-coded white panels left by individual page styles. */
+html[data-theme="dark"] .secondary-button,
+html[data-theme="dark"] .hero-card,
+html[data-theme="dark"] .features-section,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] .analysis-card,
+html[data-theme="dark"] .output-item,
+html[data-theme="dark"] .result-location,
+html[data-theme="dark"] .result-card,
+html[data-theme="dark"] .scheme-card,
+html[data-theme="dark"] .scheme-details,
+html[data-theme="dark"] .report-preview,
+html[data-theme="dark"] .feasibility-section,
+html[data-theme="dark"] .ai-status,
+html[data-theme="dark"] .advisor-chat,
+html[data-theme="dark"] .chat-area,
+html[data-theme="dark"] .chat-input,
+html[data-theme="dark"] .quick-advice,
+html[data-theme="dark"] .recommendations,
+html[data-theme="dark"] .dashboard-card,
+html[data-theme="dark"] .dashboard-panel,
+html[data-theme="dark"] .quick-section,
+html[data-theme="dark"] .finance-card,
+html[data-theme="dark"] .transaction-section,
+html[data-theme="dark"] .business-section,
+html[data-theme="dark"] .business-profile-card,
+html[data-theme="dark"] .login-box,
+html[data-theme="dark"] .register-form,
+html[data-theme="dark"] .nav-links.active {
+    background: #d4d4d4 !important;
+    color: #171717 !important;
+}
+
+html[data-theme="dark"] .result-card:nth-child(2),
+html[data-theme="dark"] .scheme-card {
+    background: linear-gradient(135deg, #d4d4d4 0%, #bdbdbd 100%) !important;
+}
+
+html[data-theme="dark"] .profit-box span,
+html[data-theme="dark"] .feature-card:hover,
+html[data-theme="dark"] .analysis-box:hover,
+html[data-theme="dark"] .swot-card:hover {
+    background: #d4d4d4 !important;
+}
 /* ==========================================
    SMART FINANCIAL CALCULATOR
 ========================================== */
