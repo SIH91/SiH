@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | GramBiz AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                GramBiz<span>AI</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- REGISTER SECTION -->
+    <main class="register-page">
+
+        <div class="register-container">
+
+            <div class="register-heading">
+
+                <p class="tagline">
+                    GET STARTED
+                </p>
+
+                <h1>
+                    Create Your
+                    <span>Business Profile</span>
+                </h1>
+
+                <p>
+                    Tell us about yourself and your business.
+                    This information will help us provide
+                    personalized recommendations.
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+            <form class="register-form">
+
+                <!-- PERSONAL DETAILS -->
+                <div class="form-section">
+
+                    <h2>Personal Details</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your full name"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="location">
+                                Village / Town
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                placeholder="Enter your village or town"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUSINESS DETAILS -->
+                <div class="form-section">
+
+                    <h2>Business Details</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="business">
+                                Business Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="business"
+                                name="business"
+                                placeholder="Enter business name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Business Category
+                            </label>
+
+                            <select
+                                id="category"
+                                name="category"
+                                required
+                            >
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option value="agriculture">
+                                    Agriculture
+                                </option>
+
+                                <option value="dairy">
+                                    Dairy
+                                </option>
+
+                                <option value="poultry">
+                                    Poultry
+                                </option>
+
+                                <option value="food">
+                                    Food Processing
+                                </option>
+
+                                <option value="retail">
+                                    Retail / Shop
+                                </option>
+
+                                <option value="handicraft">
+                                    Handicrafts
+                                </option>
+
+                                <option value="livestock">
+                                    Livestock
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="experience">
+                                Business Experience
+                            </label>
+
+                            <select
+                                id="experience"
+                                name="experience"
+                                required
+                            >
+
+                                <option value="">
+                                    Select experience
+                                </option>
+
+                                <option value="new">
+                                    Just Starting
+                                </option>
+
+                                <option value="1-3">
+                                    1–3 Years
+                                </option>
+
+                                <option value="3-5">
+                                    3–5 Years
+                                </option>
+
+                                <option value="5+">
+                                    More than 5 Years
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="employees">
+                                Number of Workers
+                            </label>
+
+                            <input
+                                type="number"
+                                id="employees"
+                                name="employees"
+                                placeholder="e.g. 3"
+                                min="0"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FINANCIAL DETAILS -->
+                <div class="form-section">
+
+                    <h2>Financial Information</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="income">
+                                Average Monthly Income
+                            </label>
+
+                            <input
+                                type="number"
+                                id="income"
+                                name="income"
+                                placeholder="₹ Enter amount"
+                                min="0"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="expense">
+                                Average Monthly Expenses
+                            </label>
+
+                            <input
+                                type="number"
+                                id="expense"
+                                name="expense"
+                                placeholder="₹ Enter amount"
+                                min="0"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+                <div class="form-submit">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Create Business Profile
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>
+                    GramBiz<span>AI</span>
+                </h3>
+
+                <p>
+                    AI-powered support for rural entrepreneurs.
+                </p>
+
+            </div>
+
+            <div>
+
+                <p>© 2026 GramBiz AI</p>
+                <p>SIH26091</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
