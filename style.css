@@ -39,6 +39,22 @@
     --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+html[data-theme="dark"] {
+    --bg-page: #090909;
+    --bg-card: #1a1a1a;
+    --bg-muted: #242424;
+    --text-primary: #f5f5f5;
+    --text-secondary: #d1d1d1;
+    --text-muted: #a3a3a3;
+    --border: #404040;
+    --primary-light: #173521;
+    --primary-border: #237a46;
+    --accent-light: #12334a;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
 /* --- RESET & GLOBALS --- */
 * {
     margin: 0;
@@ -83,6 +99,30 @@ header {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
 }
+
+html[data-theme="dark"] header { background: rgba(9, 9, 9, 0.95); }
+html[data-theme="dark"] .hero-card,
+html[data-theme="dark"] .feature-card,
+html[data-theme="dark"] .official-scheme-card,
+html[data-theme="dark"] .stat-box,
+html[data-theme="dark"] input,
+html[data-theme="dark"] select { background: var(--bg-card); color: var(--text-primary); }
+html[data-theme="dark"] .features-section { background: #121212; }
+
+.site-preferences { display: flex; align-items: center; gap: 8px; margin-left: auto; margin-right: 14px; }
+.theme-toggle, .language-select { border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); border-radius: var(--radius-sm); font-weight: 700; font-size: 13px; min-height: 36px; padding: 7px 10px; cursor: pointer; }
+.theme-toggle { min-width: 42px; }
+
+.schemes-section { padding: 90px 24px; background: var(--bg-muted); }
+.scheme-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.official-scheme-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-sm); }
+.scheme-badge { display: inline-block; color: #166534; background: var(--primary-light); border: 1px solid var(--primary-border); border-radius: var(--radius-full); font-size: 12px; font-weight: 800; letter-spacing: .6px; padding: 4px 10px; margin-bottom: 14px; }
+.official-scheme-card h3 { font-size: 20px; margin-bottom: 10px; }
+.official-scheme-card > p, .official-scheme-card li { color: var(--text-secondary); font-size: 14px; }
+.official-scheme-card h4 { font-size: 14px; margin: 18px 0 7px; }
+.official-scheme-card ul { padding-left: 19px; display: grid; gap: 6px; }
+.official-scheme-card a { display: inline-block; color: var(--primary); font-size: 14px; font-weight: 800; margin-top: 20px; }
+.scheme-disclaimer { max-width: 900px; color: var(--text-muted); font-size: 13px; margin: 24px auto 0; text-align: center; }
 
 .navbar {
     max-width: 1200px;
@@ -2041,6 +2081,79 @@ footer {
         padding: 24px 18px;
     }
 }
+
+/* --- DARK THEME: FORM READABILITY --- */
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] .capital-input,
+html[data-theme="dark"] .chat-input,
+html[data-theme="dark"] .location-suggestions {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #475569 !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1;
+}
+
+html[data-theme="dark"] select option {
+    background: #1e293b;
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .form-group label,
+html[data-theme="dark"] .form-help,
+html[data-theme="dark"] .capital-input span,
+html[data-theme="dark"] .login-options,
+html[data-theme="dark"] .remember-me,
+html[data-theme="dark"] .location-suggestions li {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .form-group input:focus,
+html[data-theme="dark"] .form-group select:focus,
+html[data-theme="dark"] .capital-input input:focus,
+html[data-theme="dark"] .chat-input input:focus {
+    background: #1e293b !important;
+    border-color: #4ade80 !important;
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2) !important;
+}
+
+html[data-theme="dark"] .location-suggestions li:hover,
+html[data-theme="dark"] .location-suggestions li[aria-selected="true"] {
+    background: #153c27 !important;
+    color: #dcfce7 !important;
+}
+
+/* Neutral table surfaces in dark mode, including finance and report tables. */
+html[data-theme="dark"] .transaction-table-wrapper,
+html[data-theme="dark"] .table-container,
+html[data-theme="dark"] .schedule-card,
+html[data-theme="dark"] table {
+    background: #1f1f1f !important;
+    color: #f5f5f5 !important;
+    border-color: #404040 !important;
+}
+
+html[data-theme="dark"] table th {
+    background: #303030 !important;
+    color: #ffffff !important;
+    border-color: #4a4a4a !important;
+}
+
+html[data-theme="dark"] table td {
+    background: #242424 !important;
+    color: #e5e5e5 !important;
+    border-color: #404040 !important;
+}
+
+html[data-theme="dark"] table tr:nth-child(even) td {
+    background: #292929 !important;
+}
 /* ==========================================
    SMART FINANCIAL CALCULATOR
 ========================================== */
@@ -2231,4 +2344,11 @@ footer {
         padding: 12px;
     }
 
+}
+
+@media (max-width: 768px) {
+    .site-preferences { gap: 5px; margin-left: auto; margin-right: 8px; }
+    .language-select { width: 84px; padding: 7px 5px; }
+    .theme-toggle { min-width: 36px; padding: 7px; }
+    .scheme-grid { grid-template-columns: 1fr; }
 }

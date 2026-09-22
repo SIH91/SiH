@@ -7,6 +7,52 @@ function getSupabase() {
     return window.supabaseClient || null;
 }
 
+// Site-wide preferences: stored locally so the choice follows visitors across pages.
+document.addEventListener("DOMContentLoaded", () => {
+    const translations = {
+        en: { Home: "Home", "Feasibility Check": "Feasibility Check", "AI Advisor": "AI Advisor", Dashboard: "Dashboard", Login: "Login", "Check Feasibility": "Check Feasibility" },
+        hi: { Home: "होम", "Feasibility Check": "व्यवहार्यता जाँच", "AI Advisor": "एआई सलाहकार", Dashboard: "डैशबोर्ड", Login: "लॉग इन", "Check Feasibility": "व्यवहार्यता जाँचें" },
+        te: { Home: "హోమ్", "Feasibility Check": "సాధ్యత తనిఖీ", "AI Advisor": "ఏఐ సలహాదారు", Dashboard: "డాష్‌బోర్డ్", Login: "లాగిన్", "Check Feasibility": "సాధ్యత తనిఖీ" },
+        ta: { Home: "முகப்பு", "Feasibility Check": "சாத்தியக்கூறு சோதனை", "AI Advisor": "ஏஐ ஆலோசகர்", Dashboard: "டாஷ்போர்டு", Login: "உள்நுழை", "Check Feasibility": "சாத்தியக்கூறு சோதனை" },
+        kn: { Home: "ಮುಖಪುಟ", "Feasibility Check": "ಸಾಧ್ಯತಾ ಪರಿಶೀಲನೆ", "AI Advisor": "ಎಐ ಸಲಹೆಗಾರ", Dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", Login: "ಲಾಗಿನ್", "Check Feasibility": "ಸಾಧ್ಯತಾ ಪರಿಶೀಲನೆ" },
+    };
+    const languages = { en: "English", hi: "हिन्दी", te: "తెలుగు", ta: "தமிழ்", kn: "ಕನ್ನಡ" };
+    const nav = document.querySelector(".navbar");
+    if (!nav) return;
+    const preferences = document.createElement("div");
+    preferences.className = "site-preferences";
+    preferences.innerHTML = '<button type="button" class="theme-toggle" aria-label="Toggle dark mode"></button><label class="sr-only" for="language-select">Choose language</label><select id="language-select" class="language-select" aria-label="Choose language"></select>';
+    nav.insertBefore(preferences, nav.querySelector(".nav-button") || null);
+    const themeButton = preferences.querySelector(".theme-toggle");
+    const languageSelect = preferences.querySelector(".language-select");
+    Object.entries(languages).forEach(([code, name]) => languageSelect.add(new Option(name, code)));
+    const setTheme = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem("locobiz-theme", theme);
+        const label = theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+        themeButton.textContent = theme === "dark" ? "☀️" : "🌙";
+        themeButton.setAttribute("aria-label", label);
+        themeButton.title = label;
+    };
+    const translate = (language) => {
+        const strings = translations[language] || translations.en;
+        document.documentElement.lang = language;
+        nav.querySelectorAll(".nav-links a, .nav-button").forEach((element) => {
+            const original = element.dataset.originalText || element.textContent.trim();
+            element.dataset.originalText = original;
+            element.textContent = strings[original] || original;
+        });
+        localStorage.setItem("locobiz-language", language);
+    };
+    const savedTheme = localStorage.getItem("locobiz-theme") || "light";
+    const savedLanguage = localStorage.getItem("locobiz-language") || "en";
+    languageSelect.value = savedLanguage;
+    setTheme(savedTheme);
+    translate(savedLanguage);
+    themeButton.addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+    languageSelect.addEventListener("change", () => translate(languageSelect.value));
+});
+
 // Keyless Telangana address suggestions for the registration form. These can
 // be replaced with a server-backed provider when a restricted API key is available.
 document.addEventListener("DOMContentLoaded", () => {
