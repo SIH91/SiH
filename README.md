@@ -8,7 +8,7 @@ An MVP API for the PRD's business-feasibility workflow. It accepts entrepreneur,
 - All financial estimates include a source (`user`, `system_estimate`, or `calculated`) and are retained in the response assumptions.
 - Scheme matches are screening matches only and always require eligibility verification.
 - The API explicitly states that its analysis is not a loan approval or success guarantee.
-- When `OPENAI_API_KEY` is set on the server, the Responses API adds a guarded, non-authoritative narrative summary. It never changes the formula-based score.
+- When `OPENAI_API_KEY` is set on the server, the Responses API adds guarded, non-authoritative AI guidance to every module: feasibility, market, financials, risks, scheme screening, and DPR. It never changes the formula-based score.
 
 ## Run
 

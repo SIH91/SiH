@@ -51,6 +51,22 @@ class FactorScore(BaseModel):
     explanation: str
 
 
+class AiModuleInsight(BaseModel):
+    summary: str
+    recommendations: list[str]
+    data_status: Literal["user_input", "system_estimate", "requires_verification"]
+
+
+class AiInsights(BaseModel):
+    overview: str
+    feasibility: AiModuleInsight
+    market: AiModuleInsight
+    financials: AiModuleInsight
+    risks: AiModuleInsight
+    schemes: AiModuleInsight
+    dpr: AiModuleInsight
+
+
 class EvaluationResponse(BaseModel):
     feasibility_score: int = Field(ge=0, le=100)
     potential: Literal["high", "moderate", "low"]
@@ -64,7 +80,7 @@ class EvaluationResponse(BaseModel):
     disclaimer: str
     audit_trail: list[dict]
     generated_with_ai: bool
-    ai_insights: dict | None = None
+    ai_insights: AiInsights | None = None
 
 
 class ChatRequest(BaseModel):

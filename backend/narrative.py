@@ -13,12 +13,28 @@ NARRATIVE_SCHEMA = {
     "schema": {
         "type": "object",
         "properties": {
-            "summary": {"type": "string"},
-            "opportunities": {"type": "array", "items": {"type": "string"}},
-            "cautions": {"type": "array", "items": {"type": "string"}},
+            "overview": {"type": "string"},
+            "feasibility": {"$ref": "#/$defs/module_insight"},
+            "market": {"$ref": "#/$defs/module_insight"},
+            "financials": {"$ref": "#/$defs/module_insight"},
+            "risks": {"$ref": "#/$defs/module_insight"},
+            "schemes": {"$ref": "#/$defs/module_insight"},
+            "dpr": {"$ref": "#/$defs/module_insight"},
         },
-        "required": ["summary", "opportunities", "cautions"],
+        "required": ["overview", "feasibility", "market", "financials", "risks", "schemes", "dpr"],
         "additionalProperties": False,
+        "$defs": {
+            "module_insight": {
+                "type": "object",
+                "properties": {
+                    "summary": {"type": "string"},
+                    "recommendations": {"type": "array", "items": {"type": "string"}},
+                    "data_status": {"type": "string", "enum": ["user_input", "system_estimate", "requires_verification"]},
+                },
+                "required": ["summary", "recommendations", "data_status"],
+                "additionalProperties": False,
+            }
+        },
     },
 }
 
@@ -29,7 +45,7 @@ def is_configured() -> bool:
 
 
 def enrich(assessment: dict[str, Any], language: str) -> dict[str, Any] | None:
-    """Return concise, guarded recommendations when a server-side key is configured.
+    """Return structured guidance for every LocoBiz module when configured.
 
     A malformed or unavailable model response is deliberately non-fatal: the
     deterministic assessment remains a complete MVP response.
@@ -40,21 +56,22 @@ def enrich(assessment: dict[str, Any], language: str) -> dict[str, Any] | None:
         from openai import OpenAI
 
         instructions = (
-            "You are LocoBiz AI, an assistant for rural business planning. "
-            "Use clear, practical language. Never promise profitability, loan approval, "
-            "or scheme eligibility. Call system estimates estimates, never verified facts. "
-            "The deterministic score is authoritative and must not be recalculated."
+            "You are LocoBiz AI, an assistant for rural business planning. Use clear, practical language. "
+            "Create distinct guidance for feasibility, market, financials, risks, schemes, and DPR. "
+            "Never invent current market facts, government scheme percentages, eligibility, loan terms, or sources. "
+            "Never promise profitability, loan approval, or scheme eligibility. Mark unverified items requires_verification "
+            "and system calculations system_estimate. The deterministic score and financial values are authoritative; do not recalculate them."
         )
         response = OpenAI().responses.create(
             model=os.getenv("OPENAI_MODEL", "gpt-5"),
             instructions=instructions,
             input=json.dumps({"language": language, "assessment": assessment}),
             text={"format": NARRATIVE_SCHEMA},
-            max_output_tokens=500,
+            max_output_tokens=1000,
             store=False,
         )
         result = json.loads(response.output_text)
-        if not all(key in result for key in ("summary", "opportunities", "cautions")):
+        if not all(key in result for key in ("overview", "feasibility", "market", "financials", "risks", "schemes", "dpr")):
             return None
         return result
     except Exception:

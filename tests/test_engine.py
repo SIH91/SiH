@@ -21,12 +21,20 @@ class EvaluationEngineTests(unittest.TestCase):
         self.assertFalse(response["generated_with_ai"])
 
     def test_openai_enrichment_requests_strict_json_without_storing(self):
-        fake_response = SimpleNamespace(output_text='{"summary":"Useful plan.","opportunities":["Local demand"],"cautions":["Verify estimates"]}')
+        fake_response = SimpleNamespace(output_text='''{
+            "overview":"Useful plan.",
+            "feasibility":{"summary":"Good fit.","recommendations":["Validate demand"],"data_status":"system_estimate"},
+            "market":{"summary":"Research locally.","recommendations":["Survey buyers"],"data_status":"requires_verification"},
+            "financials":{"summary":"Review costs.","recommendations":["Update expenses"],"data_status":"system_estimate"},
+            "risks":{"summary":"Manage risk.","recommendations":["Keep reserves"],"data_status":"user_input"},
+            "schemes":{"summary":"Check eligibility.","recommendations":["Use official portal"],"data_status":"requires_verification"},
+            "dpr":{"summary":"Prepare report.","recommendations":["Review inputs"],"data_status":"user_input"}
+        }''')
         create = MagicMock(return_value=fake_response)
         fake_client = SimpleNamespace(responses=SimpleNamespace(create=create))
         with patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"}, clear=True), patch("openai.OpenAI", return_value=fake_client):
             result = enrich({"feasibility_score": 72}, "en")
-        self.assertEqual(result["summary"], "Useful plan.")
+        self.assertEqual(result["overview"], "Useful plan.")
         self.assertFalse(create.call_args.kwargs["store"])
         self.assertEqual(create.call_args.kwargs["text"]["format"]["type"], "json_schema")
 

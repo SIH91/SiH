@@ -46,5 +46,5 @@ def analyze_evaluation(request: EvaluationRequest) -> dict:
     if insights:
         assessment["ai_insights"] = insights
         assessment["generated_with_ai"] = True
-        assessment["audit_trail"].append({"event": "openai_narrative_enrichment", "version": "mvp-1"})
+        assessment["audit_trail"].append({"event": "openai_module_insights", "modules": ["feasibility", "market", "financials", "risks", "schemes", "dpr"], "version": "mvp-1"})
     return assessment
