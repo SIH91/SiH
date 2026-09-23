@@ -29,6 +29,8 @@ The language selector covers all 22 Eighth Schedule languages: Assamese, Bengali
 
 Set one translation credential server-side: `GOOGLE_TRANSLATE_API_KEY` for Google Cloud Translation, or `BHASHINI_INFERENCE_API_KEY` for Government of India BHASHINI. The default `TRANSLATION_PROVIDER=auto` prefers Google when both are configured. The browser only calls LocoBiz's `/api/v1/language/translate` endpoint; credentials never enter browser JavaScript or Git. If the frontend and backend have different origins, set a `locobiz-api-base` meta tag or `window.LOCOBIZ_API_BASE` to the backend origin and add the frontend host to `CORS_ALLOWED_ORIGINS`.
 
+For local development, copy `.env.example` to `.env`, add one provider key, and restart the FastAPI server. LocoBiz loads `.env` automatically. For production, set the same values in your hosting provider's encrypted environment-variable/secret settings, then redeploy the backend.
+
 ## Location fields
 
 Use `GET /api/v1/locations/search?q=Nashik` for business and entrepreneur location fields. Results default to India (`country_code=IN`) and return a display label, state, country, latitude, longitude, timezone, and population. Send the request only after at least two characters and save the selected result, not an arbitrary label. The service caches identical searches for 10 minutes and returns a clear error when the upstream provider is unavailable.

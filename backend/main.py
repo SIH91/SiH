@@ -3,6 +3,7 @@ import os
 import httpx
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
 from .chat import reply
 from .engine import evaluate
@@ -10,6 +11,8 @@ from .locations import search_locations
 from .narrative import enrich, is_configured
 from .schemas import ChatRequest, ChatResponse, EvaluationRequest, EvaluationResponse, LocationSearchResponse, TranslationRequest, TranslationResponse
 from .translation import TranslationUnavailable, configured_provider, translate_texts
+
+load_dotenv()
 
 app = FastAPI(title="LocoBiz AI API", version="0.1.0")
 allowed_origins = [origin.strip() for origin in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(",") if origin.strip()]
