@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finance | LocoBiz AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                <div class="logo-main">LocoBiz<span>AI</span></div>
+                <div class="logo-sub">Rural Micro Business Advisory</div>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="business.html">Business</a></li>
+                <li><a href="finance.html" class="active">Finance</a></li>
+                <li><a href="schemes.html">Government Schemes</a></li>
+                <li><a href="advisor.html">AI Advisor</a></li>
+            </ul>
+
+            <a href="index.html" class="nav-button">
+                Logout
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- FINANCE PAGE -->
+    <main class="finance-page">
+
+        <div class="finance-container">
+
+            <!-- HEADER -->
+            <div class="finance-header">
+
+                <div>
+                    <p class="tagline">FINANCIAL MANAGEMENT</p>
+
+                    <h1>
+                        Your <span>Finances</span>
+                    </h1>
+
+                    <p>
+                        Track your income, expenses and business profit.
+                    </p>
+                </div>
+
+                <button class="primary-button">
+                    + Add Transaction
+                </button>
+
+            </div>
+
+
+            <!-- FINANCIAL SUMMARY -->
+            <section class="finance-stats">
+
+                <div class="finance-card">
+
+                    <div class="finance-card-icon">
+                        💰
+                    </div>
+
+                    <p>Total Income</p>
+
+                    <h2>₹42,500</h2>
+
+                    <span class="positive">
+                        This Month
+                    </span>
+
+                </div>
+
+
+                <div class="finance-card">
+
+                    <div class="finance-card-icon expense-icon">
+                        💸
+                    </div>
+
+                    <p>Total Expenses</p>
+
+                    <h2>₹18,200</h2>
+
+                    <span class="neutral">
+                        This Month
+                    </span>
+
+                </div>
+
+
+                <div class="finance-card">
+
+                    <div class="finance-card-icon">
+                        📈
+                    </div>
+
+                    <p>Net Profit</p>
+
+                    <h2>₹24,300</h2>
+
+                    <span class="positive">
+                        57.2% margin
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- ADD TRANSACTION -->
+            <section class="transaction-section">
+
+                <div class="section-title">
+
+                    <div>
+                        <h2>Add Financial Record</h2>
+
+                        <p>
+                            Add your income or business expenses.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form class="transaction-form">
+
+                    <div class="form-group">
+
+                        <label for="transaction-type">
+                            Transaction Type
+                        </label>
+
+                        <select id="transaction-type">
+
+                            <option value="">
+                                Select type
+                            </option>
+
+                            <option value="income">
+                                Income
+                            </option>
+
+                            <option value="expense">
+                                Expense
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="transaction-category">
+                            Category
+                        </label>
+
+                        <select id="transaction-category">
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="sales">
+                                Sales
+                            </option>
+
+                            <option value="raw-material">
+                                Raw Materials
+                            </option>
+
+                            <option value="transport">
+                                Transport
+                            </option>
+
+                            <option value="labour">
+                                Labour
+                            </option>
+
+                            <option value="electricity">
+                                Electricity
+                            </option>
+
+                            <option value="feed">
+                                Animal Feed
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="amount">
+                            Amount
+                        </label>
+
+                        <input
+                            type="number"
+                            id="amount"
+                            placeholder="₹ Enter amount"
+                            min="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="transaction-date">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="transaction-date"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <input
+                            type="text"
+                            id="description"
+                            placeholder="e.g. Milk sales for today"
+                        >
+
+                    </div>
+
+
+                    <div class="transaction-submit">
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Save Transaction
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- RECENT TRANSACTIONS -->
+            <section class="transactions-section">
+
+                <div class="section-title">
+
+                    <div>
+                        <h2>Recent Transactions</h2>
+
+                        <p>
+                            Your latest income and expenses.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="transaction-table-wrapper">
+
+                    <table class="transaction-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>22 Sep 2026</td>
+
+                                <td>
+                                    Milk Sales
+                                </td>
+
+                                <td>
+                                    Sales
+                                </td>
+
+                                <td>
+                                    <span class="income-badge">
+                                        Income
+                                    </span>
+                                </td>
+
+                                <td class="income-amount">
+                                    + ₹2,500
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>21 Sep 2026</td>
+
+                                <td>
+                                    Animal Feed
+                                </td>
+
+                                <td>
+                                    Animal Feed
+                                </td>
+
+                                <td>
+                                    <span class="expense-badge">
+                                        Expense
+                                    </span>
+                                </td>
+
+                                <td class="expense-amount">
+                                    - ₹800
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>20 Sep 2026</td>
+
+                                <td>
+                                    Milk Sales
+                                </td>
+
+                                <td>
+                                    Sales
+                                </td>
+
+                                <td>
+                                    <span class="income-badge">
+                                        Income
+                                    </span>
+                                </td>
+
+                                <td class="income-amount">
+                                    + ₹2,350
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>19 Sep 2026</td>
+
+                                <td>
+                                    Transport
+                                </td>
+
+                                <td>
+                                    Transport
+                                </td>
+
+                                <td>
+                                    <span class="expense-badge">
+                                        Expense
+                                    </span>
+
+                                </td>
+
+                                <td class="expense-amount">
+                                    - ₹450
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <!-- SMART FINANCIAL CALCULATOR -->
+<section class="finance-section">
+
+    <div class="section-header">
+        <div>
+            <p class="tagline">SMART FINANCIAL PLANNING</p>
+
+            <h2>
+                Loan <span>Calculator</span>
+            </h2>
+
+            <p>
+                Calculate your project cost, eligible loan, scheme,
+                EMI and repayment schedule.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- INPUT CARD -->
+    <div class="finance-card">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label for="financeCapital">
+                    Available Margin Capital
+                </label>
+
+                <input
+                    type="number"
+                    id="financeCapital"
+                    placeholder="e.g. 100000"
+                    min="0"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="financeBusiness">
+                    Business Category
+                </label>
+
+                <select id="financeBusiness">
+
+                    <option value="">
+                        Select Business
+                    </option>
+
+                    <option>Dairy</option>
+                    <option>Retail</option>
+                    <option>Textiles</option>
+                    <option>Food Processing</option>
+                    <option>Agriculture</option>
+                    <option>Handicrafts</option>
+                    <option>Services</option>
+                    <option>Other</option>
+
+                </select>
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="primary-button"
+            onclick="calculateFinance()"
+        >
+            Calculate Financial Structure
+        </button>
+
+    </div>
+
+
+    <!-- CALCULATION RESULT -->
+    <div
+        id="financeResult"
+        class="finance-result"
+        style="display:none;"
+    >
+
+        <!-- SUMMARY -->
+        <div class="finance-stats">
+
+            <div class="finance-card">
+
+                <p>Margin Capital</p>
+
+                <h2 id="financeMargin">
+                    ₹0
+                </h2>
+
+            </div>
+
+
+            <div class="finance-card">
+
+                <p>Total Project Cost</p>
+
+                <h2 id="financeProject">
+                    ₹0
+                </h2>
+
+            </div>
+
+
+            <div class="finance-card">
+
+                <p>Maximum Loan</p>
+
+                <h2 id="financeLoan">
+                    ₹0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCHEME -->
+        <div class="scheme-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Recommended Scheme
+                    </h2>
+
+                    <p>
+                        Scheme selected based on your project cost.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="scheme-details">
+
+                <div>
+                    <span>Scheme</span>
+                    <strong id="financeScheme">
+                        -
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Interest Rate</span>
+                    <strong id="financeInterest">
+                        -
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Tenure</span>
+                    <strong id="financeTenure">
+                        -
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Moratorium</span>
+                    <strong id="financeMoratorium">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EMI -->
+        <div class="emi-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        EMI Estimate
+                    </h2>
+
+                    <p>
+                        Estimated monthly repayment after the
+                        applicable moratorium period.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="emi-main">
+
+                <span>
+                    Estimated Monthly EMI
+                </span>
+
+                <strong id="monthlyEMI">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- REPAYMENT SCHEDULE -->
+        <div class="schedule-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Repayment Schedule
+                    </h2>
+
+                    <p>
+                        Estimated monthly principal and interest
+                        breakdown.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Period</th>
+                            <th>Opening Balance</th>
+                            <th>EMI</th>
+                            <th>Interest</th>
+                            <th>Principal</th>
+                            <th>Closing Balance</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="repaymentTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+            <!-- FINANCIAL INSIGHT -->
+            <section class="finance-insight">
+
+                <div class="insight-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <p>FINANCIAL INSIGHT</p>
+
+                    <h2>
+                        Your current profit margin is 57.2%.
+                    </h2>
+
+                    <span>
+                        Keep tracking your expenses regularly
+                        to understand where your money is being spent.
+                    </span>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <h3>
+                    LocoBiz<span>AI</span>
+                </h3>
+
+                <p>
+                    Rural Micro Business Advisory
+                </p>
+            </div>
+
+            <div>
+                <p>© 2026 LocoBiz AI</p>
+                <p>SIH26091</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script type="module" src="superbase.js"></script>
+    <script defer src="script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Government Scheme Finder | LocoBiz | AI</title>
+
+    <!-- Existing main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Scheme Finder stylesheet -->
+    <link rel="stylesheet" href="schemes.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                <div class="logo-main">LocoBiz<span>AI</span></div>
+                <div class="logo-sub">Rural Micro Business Advisory</div>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="business.html">Business</a></li>
+                <li><a href="finance.html">Finance</a></li>
+                <li><a href="schemes.html" class="active">Schemes</a></li>
+                <li><a href="advisor.html">AI Advisor</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+
+            <a href="analyze.html" class="nav-button">
+                Get Started
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+    <section class="scheme-hero">
+
+        <div class="scheme-hero-content">
+
+            <div class="scheme-badge">
+                Government Scheme Finder
+            </div>
+
+            <h1>
+                Find Government Schemes
+                <span>Made For You</span>
+            </h1>
+
+            <p>
+                Answer a few simple questions and discover government
+                schemes that may be relevant to your business.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FINDER ================= -->
+    <main class="scheme-container">
+
+        <div class="scheme-progress">
+            <div class="progress-step active" data-step="1">
+                <span>1</span>
+                <p>About You</p>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step" data-step="2">
+                <span>2</span>
+                <p>Your Business</p>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step" data-step="3">
+                <span>3</span>
+                <p>Your Profile</p>
+            </div>
+        </div>
+
+
+        <!-- ================= STEP 1 ================= -->
+        <section class="scheme-step active" id="schemeStep1">
+
+            <div class="scheme-card">
+
+                <div class="scheme-card-header">
+                    <h2>Tell Us About Yourself</h2>
+                    <p>
+                        This helps us identify schemes based on your
+                        basic profile.
+                    </p>
+                </div>
+
+                <div class="scheme-form-grid">
+
+                    <div class="scheme-form-group">
+                        <label for="schemeAge">Age</label>
+                        <input
+                            type="number"
+                            id="schemeAge"
+                            min="18"
+                            placeholder="Enter your age"
+                        >
+                    </div>
+
+                    <div class="scheme-form-group">
+                        <label for="schemeGender">Gender</label>
+
+                        <select id="schemeGender">
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="scheme-form-group">
+                        <label for="schemeState">State</label>
+
+                        <input
+                            type="text"
+                            id="schemeState"
+                            placeholder="Enter your state"
+                        >
+                    </div>
+
+                    <div class="scheme-form-group">
+                        <label for="schemeDistrict">District</label>
+
+                        <input
+                            type="text"
+                            id="schemeDistrict"
+                            placeholder="Enter your district"
+                        >
+                    </div>
+
+                    <div class="scheme-form-group full-width">
+                        <label for="schemeAreaType">Area Type</label>
+
+                        <select id="schemeAreaType">
+                            <option value="">Select area type</option>
+                            <option value="rural">Rural</option>
+                            <option value="semi-urban">Semi-Urban</option>
+                            <option value="urban">Urban</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="scheme-actions">
+                    <button
+                        type="button"
+                        class="scheme-btn primary"
+                        onclick="nextSchemeStep(1)"
+                    >
+                        Continue →
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STEP 2 ================= -->
+        <section class="scheme-step" id="schemeStep2">
+
+            <div class="scheme-card">
+
+                <div class="scheme-card-header">
+                    <h2>Tell Us About Your Business</h2>
+                    <p>
+                        Help us understand what you are planning or
+                        already doing.
+                    </p>
+                </div>
+
+                <div class="scheme-form-grid">
+
+                    <div class="scheme-form-group">
+                        <label for="schemeOccupation">
+                            Occupation
+                        </label>
+
+                        <select id="schemeOccupation">
+                            <option value="">Select occupation</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="entrepreneur">
+                                Entrepreneur
+                            </option>
+                            <option value="artisan">
+                                Artisan
+                            </option>
+                            <option value="self-employed">
+                                Self Employed
+                            </option>
+                            <option value="student">
+                                Student
+                            </option>
+                            <option value="other">
+                                Other
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="scheme-form-group">
+                        <label for="schemeBusinessStatus">
+                            Business Status
+                        </label>
+
+                        <select id="schemeBusinessStatus">
+                            <option value="">Select status</option>
+                            <option value="new">
+                                Planning a new business
+                            </option>
+                            <option value="existing">
+                                Existing business
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="scheme-form-group">
+                        <label for="schemeBusinessCategory">
+                            Business Category
+                        </label>
+
+                        <select id="schemeBusinessCategory">
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="agriculture">
+                                Agriculture
+                            </option>
+
+                            <option value="dairy">
+                                Dairy
+                            </option>
+
+                            <option value="food">
+                                Food Processing
+                            </option>
+
+                            <option value="retail">
+                                Retail
+                            </option>
+
+                            <option value="textiles">
+                                Textiles
+                            </option>
+
+                            <option value="manufacturing">
+                                Manufacturing
+                            </option>
+
+                            <option value="services">
+                                Services
+                            </option>
+
+                            <option value="artisan">
+                                Artisan / Handicraft
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="scheme-form-group">
+                        <label for="schemeInvestment">
+                            Expected Investment
+                        </label>
+
+                        <input
+                            type="number"
+                            id="schemeInvestment"
+                            min="0"
+                            placeholder="₹ Enter amount"
+                        >
+                    </div>
+
+
+                    <div class="scheme-form-group full-width">
+
+                        <label for="schemeBusinessIdea">
+                            Business Idea
+                        </label>
+
+                        <textarea
+                            id="schemeBusinessIdea"
+                            rows="4"
+                            placeholder="Briefly describe your business idea..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="scheme-actions">
+
+                    <button
+                        type="button"
+                        class="scheme-btn secondary"
+                        onclick="previousSchemeStep(2)"
+                    >
+                        ← Back
+                    </button>
+
+                    <button
+                        type="button"
+                        class="scheme-btn primary"
+                        onclick="nextSchemeStep(2)"
+                    >
+                        Continue →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STEP 3 ================= -->
+        <section class="scheme-step" id="schemeStep3">
+
+            <div class="scheme-card">
+
+                <div class="scheme-card-header">
+
+                    <h2>Your Profile</h2>
+
+                    <p>
+                        Select anything that applies to you.
+                        These details can help improve scheme matching.
+                    </p>
+
+                </div>
+
+
+                <div class="scheme-checkbox-grid">
+
+                    <label class="scheme-checkbox">
+                        <input type="checkbox" id="schemeFarmer">
+                        <span>I'm a farmer</span>
+                    </label>
+
+                    <label class="scheme-checkbox">
+                        <input
+                            type="checkbox"
+                            id="schemeWomanEntrepreneur"
+                        >
+                        <span>Woman entrepreneur</span>
+                    </label>
+
+                    <label class="scheme-checkbox">
+                        <input
+                            type="checkbox"
+                            id="schemeArtisan"
+                        >
+                        <span>Artisan / Craftsman</span>
+                    </label>
+
+                    <label class="scheme-checkbox">
+                        <input
+                            type="checkbox"
+                            id="schemeSHG"
+                        >
+                        <span>Member of SHG</span>
+                    </label>
+
+                    <label class="scheme-checkbox">
+                        <input
+                            type="checkbox"
+                            id="schemeFPO"
+                        >
+                        <span>Member of FPO</span>
+                    </label>
+
+                    <label class="scheme-checkbox">
+                        <input
+                            type="checkbox"
+                            id="schemeFirstBusiness"
+                        >
+                        <span>This is my first business</span>
+                    </label>
+
+                </div>
+
+
+                <div class="scheme-actions">
+
+                    <button
+                        type="button"
+                        class="scheme-btn secondary"
+                        onclick="previousSchemeStep(3)"
+                    >
+                        ← Back
+                    </button>
+
+                    <button
+                        type="button"
+                        class="scheme-btn primary"
+                        onclick="findSchemes()"
+                    >
+                        Find My Schemes →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESULTS ================= -->
+        <section
+            class="scheme-results-section"
+            id="schemeResultsSection"
+        >
+
+            <div class="scheme-results-header">
+
+                <div>
+                    <div class="scheme-badge">
+                        Your Results
+                    </div>
+
+                    <h2>
+                        Government Schemes
+                        <span>For You</span>
+                    </h2>
+
+                    <p>
+                        Based on the information you provided,
+                        these schemes may be relevant to you.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="scheme-btn secondary"
+                    onclick="restartSchemeFinder()"
+                >
+                    Start Again
+                </button>
+
+            </div>
+
+
+            <div
+                id="schemeResults"
+                class="scheme-results-grid"
+            >
+                <!-- Results generated by schemes.js -->
+            </div>
+
+
+            <div class="scheme-disclaimer">
+
+                <strong>Important:</strong>
+
+                Scheme matching is provided for informational
+                purposes only. Final eligibility, benefits,
+                loan amount, subsidy and other conditions are
+                determined by the respective government department
+                or official scheme authority.
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="scheme-footer">
+
+        <div class="scheme-footer-content">
+
+            <h3>LocoBiz | AI</h3>
+
+            <p>
+                Rural Micro Business Advisory
+            </p>
+
+            <p class="footer-note">
+                Helping rural entrepreneurs understand business,
+                finance and government support.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= SCRIPTS ================= -->
+    <script type="module" src="superbase.js"></script>
+    <script defer src="script.js"></script>
+    <script src="schemes.js"></script>
+
+</body>
+</html>

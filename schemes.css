@@ -1,0 +1,581 @@
+/* =========================================================
+   LOCOBIZ | AI — GOVERNMENT SCHEME FINDER
+   Page-specific styles
+   ========================================================= */
+
+:root {
+    --scheme-primary: #16a34a;
+    --scheme-primary-dark: #15803d;
+    --scheme-light: #f0fdf4;
+    --scheme-border: #d1d5db;
+    --scheme-text: #111827;
+    --scheme-muted: #6b7280;
+    --scheme-white: #ffffff;
+    --scheme-bg: #f8fafc;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.scheme-hero {
+    padding: 70px 20px 60px;
+    background: linear-gradient(
+        135deg,
+        #f0fdf4 0%,
+        #ffffff 55%,
+        #ecfdf5 100%
+    );
+    text-align: center;
+}
+
+.scheme-hero-content {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.scheme-badge {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--scheme-light);
+    color: var(--scheme-primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.scheme-hero h1 {
+    margin: 0;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.1;
+    color: var(--scheme-text);
+}
+
+.scheme-hero h1 span,
+.scheme-results-header h2 span {
+    color: var(--scheme-primary);
+}
+
+.scheme-hero p {
+    max-width: 650px;
+    margin: 20px auto 0;
+    color: var(--scheme-muted);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.scheme-container {
+    width: min(1100px, calc(100% - 40px));
+    margin: 50px auto 70px;
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.scheme-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto 45px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    color: var(--scheme-muted);
+}
+
+.progress-step span {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.progress-step p {
+    margin: 9px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.progress-step.active span {
+    background: var(--scheme-primary);
+    color: white;
+}
+
+.progress-step.active p {
+    color: var(--scheme-primary-dark);
+}
+
+.progress-step.completed span {
+    background: var(--scheme-primary-dark);
+    color: white;
+}
+
+.progress-line {
+    height: 2px;
+    flex: 1;
+    max-width: 130px;
+    background: #e5e7eb;
+    margin: 0 5px;
+}
+
+
+/* =========================================================
+   STEPS
+   ========================================================= */
+
+.scheme-step {
+    display: none;
+}
+
+.scheme-step.active {
+    display: block;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.scheme-card {
+    background: var(--scheme-white);
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+}
+
+.scheme-card-header {
+    margin-bottom: 30px;
+}
+
+.scheme-card-header h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: var(--scheme-text);
+}
+
+.scheme-card-header p {
+    margin: 0;
+    color: var(--scheme-muted);
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.scheme-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.scheme-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.scheme-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.scheme-form-group label {
+    margin-bottom: 8px;
+    color: var(--scheme-text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.scheme-form-group input,
+.scheme-form-group select,
+.scheme-form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border: 1px solid var(--scheme-border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--scheme-text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.scheme-form-group input:focus,
+.scheme-form-group select:focus,
+.scheme-form-group textarea:focus {
+    border-color: var(--scheme-primary);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.10);
+}
+
+.scheme-form-group textarea {
+    resize: vertical;
+}
+
+
+/* =========================================================
+   CHECKBOXES
+   ========================================================= */
+
+.scheme-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.scheme-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.scheme-checkbox:hover {
+    border-color: var(--scheme-primary);
+    background: var(--scheme-light);
+}
+
+.scheme-checkbox input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--scheme-primary);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.scheme-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.scheme-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 13px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.scheme-btn.primary {
+    background: var(--scheme-primary);
+    color: white;
+}
+
+.scheme-btn.primary:hover {
+    background: var(--scheme-primary-dark);
+    transform: translateY(-1px);
+}
+
+.scheme-btn.secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.scheme-btn.secondary:hover {
+    background: #e5e7eb;
+}
+
+
+/* =========================================================
+   RESULTS
+   ========================================================= */
+
+.scheme-results-section {
+    display: none;
+    margin-top: 50px;
+}
+
+.scheme-results-section.active {
+    display: block;
+}
+
+.scheme-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.scheme-results-header h2 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    color: var(--scheme-text);
+}
+
+.scheme-results-header p {
+    margin: 0;
+    color: var(--scheme-muted);
+}
+
+.scheme-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+
+/* =========================================================
+   GENERATED SCHEME CARDS
+   These classes are used by schemes.js
+   ========================================================= */
+
+.scheme-result-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transition: 0.25s ease;
+}
+
+.scheme-result-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.scheme-result-card h3 {
+    margin: 0 0 10px;
+    color: var(--scheme-text);
+    font-size: 21px;
+}
+
+.scheme-result-card p {
+    color: var(--scheme-muted);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.scheme-result-card .scheme-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.scheme-meta span {
+    padding: 5px 9px;
+    border-radius: 6px;
+    background: var(--scheme-light);
+    color: var(--scheme-primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.scheme-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.scheme-card-actions a,
+.scheme-card-actions button {
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.scheme-card-actions a {
+    background: var(--scheme-primary);
+    color: white;
+}
+
+.scheme-card-actions button {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+
+/* =========================================================
+   NO RESULTS
+   ========================================================= */
+
+.no-schemes {
+    grid-column: 1 / -1;
+    padding: 45px 25px;
+    text-align: center;
+    background: white;
+    border: 1px dashed #d1d5db;
+    border-radius: 15px;
+}
+
+.no-schemes h3 {
+    margin: 0 0 10px;
+    color: var(--scheme-text);
+}
+
+.no-schemes p {
+    margin: 0;
+    color: var(--scheme-muted);
+}
+
+
+/* =========================================================
+   DISCLAIMER
+   ========================================================= */
+
+.scheme-disclaimer {
+    margin-top: 30px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--scheme-primary);
+    border-radius: 8px;
+    background: var(--scheme-light);
+    color: #374151;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.scheme-footer {
+    padding: 45px 20px;
+    background: #111827;
+    color: white;
+    text-align: center;
+}
+
+.scheme-footer-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.scheme-footer h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+
+.scheme-footer p {
+    margin: 5px 0;
+    color: #d1d5db;
+}
+
+.scheme-footer .footer-note {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .scheme-form-grid,
+    .scheme-checkbox-grid,
+    .scheme-results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .scheme-form-group.full-width {
+        grid-column: auto;
+    }
+
+    .scheme-card {
+        padding: 25px;
+    }
+
+    .scheme-results-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .scheme-results-header .scheme-btn {
+        align-self: flex-start;
+    }
+
+    .scheme-progress {
+        max-width: 100%;
+    }
+
+    .progress-line {
+        max-width: 70px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .scheme-container {
+        width: min(100% - 24px, 1100px);
+        margin-top: 30px;
+    }
+
+    .scheme-hero {
+        padding: 50px 15px 45px;
+    }
+
+    .scheme-hero h1 {
+        font-size: 34px;
+    }
+
+    .scheme-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .scheme-actions {
+        flex-direction: column-reverse;
+    }
+
+    .scheme-actions .scheme-btn {
+        width: 100%;
+    }
+
+    .progress-step {
+        min-width: 70px;
+    }
+
+    .progress-step p {
+        font-size: 11px;
+    }
+
+    .progress-line {
+        max-width: 35px;
+    }
+
+}

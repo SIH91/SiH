@@ -1,4 +1,19 @@
+# Environment variables & database credentials
 .env
+.env.*
+*.env
+SB.env
+
+# Python virtual environments and bytecode
 .venv/
 __pycache__/
 *.py[cod]
+
+# Dependencies
+node_modules/
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
