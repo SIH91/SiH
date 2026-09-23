@@ -16,15 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
         ta: { Home: "முகப்பு", "Feasibility Check": "சாத்தியக்கூறு சோதனை", "AI Advisor": "ஏஐ ஆலோசகர்", Dashboard: "டாஷ்போர்டு", Login: "உள்நுழை", "Check Feasibility": "சாத்தியக்கூறு சோதனை" },
         kn: { Home: "ಮುಖಪುಟ", "Feasibility Check": "ಸಾಧ್ಯತಾ ಪರಿಶೀಲನೆ", "AI Advisor": "ಎಐ ಸಲಹೆಗಾರ", Dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", Login: "ಲಾಗಿನ್", "Check Feasibility": "ಸಾಧ್ಯತಾ ಪರಿಶೀಲನೆ" },
     };
-    const languages = { en: "English", hi: "हिन्दी", te: "తెలుగు", ta: "தமிழ்", kn: "ಕನ್ನಡ" };
+    const languages = {
+        en: "English", as: "অসমীয়া", bn: "বাংলা", brx: "बड़ो", doi: "डोगरी",
+        gu: "ગુજરાતી", hi: "हिन्दी", kn: "ಕನ್ನಡ", ks: "کٲشُر", kok: "कोंकणी",
+        mai: "मैथिली", ml: "മലയാളം", mni: "মৈতৈলোন্", mr: "मराठी", ne: "नेपाली",
+        or: "ଓଡ଼ିଆ", pa: "ਪੰਜਾਬੀ", sa: "संस्कृतम्", sat: "ᱥᱟᱱᱛᱟᱲᱤ",
+        sd: "سنڌي", ta: "தமிழ்", te: "తెలుగు", ur: "اردو"
+    };
     const nav = document.querySelector(".navbar");
     if (!nav) return;
     const preferences = document.createElement("div");
     preferences.className = "site-preferences";
-    preferences.innerHTML = '<button type="button" class="theme-toggle" aria-label="Toggle dark mode"></button><label class="sr-only" for="language-select">Choose language</label><select id="language-select" class="language-select" aria-label="Choose language"></select>';
+    preferences.innerHTML = '<button type="button" class="theme-toggle" aria-label="Toggle dark mode"></button><label class="sr-only" for="language-select">Choose language</label><select id="language-select" class="language-select" aria-label="Choose language"></select><span id="translation-status" class="translation-status" aria-live="polite"></span>';
     nav.insertBefore(preferences, nav.querySelector(".nav-button") || null);
     const themeButton = preferences.querySelector(".theme-toggle");
     const languageSelect = preferences.querySelector(".language-select");
+    const translationStatus = preferences.querySelector(".translation-status");
+    const sourceTextByNode = new Map();
+    let translationRequestId = 0;
     Object.entries(languages).forEach(([code, name]) => languageSelect.add(new Option(name, code)));
     const setTheme = (theme) => {
         document.documentElement.dataset.theme = theme;
@@ -34,7 +43,50 @@ document.addEventListener("DOMContentLoaded", () => {
         themeButton.setAttribute("aria-label", label);
         themeButton.title = label;
     };
-    const translate = (language) => {
+    const isTranslatableTextNode = (node) => {
+        const parent = node.parentElement;
+        return parent && node.nodeValue.trim() && !parent.closest("script, style, noscript, textarea, code, .site-preferences");
+    };
+    const textNodes = () => {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) if (isTranslatableTextNode(walker.currentNode)) nodes.push(walker.currentNode);
+        return nodes;
+    };
+    textNodes().forEach((node) => sourceTextByNode.set(node, node.nodeValue));
+    const restoreEnglish = () => sourceTextByNode.forEach((source, node) => { if (node.isConnected) node.nodeValue = source; });
+    const translateStaticPage = async (language) => {
+        const requestId = ++translationRequestId;
+        if (language === "en") {
+            restoreEnglish();
+            translationStatus.textContent = "";
+            return;
+        }
+        const nodes = textNodes().filter((node) => sourceTextByNode.has(node));
+        const sources = nodes.map((node) => sourceTextByNode.get(node));
+        if (!sources.length) return;
+        translationStatus.textContent = "Translating…";
+        const apiBase = (document.querySelector('meta[name="locobiz-api-base"]')?.content || window.LOCOBIZ_API_BASE || "").replace(/\/$/, "");
+        try {
+            const translated = [];
+            for (let index = 0; index < sources.length; index += 100) {
+                const response = await fetch(`${apiBase}/api/v1/language/translate`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ texts: sources.slice(index, index + 100), source_language: "en", target_language: language })
+                });
+                if (!response.ok) throw new Error("Translation request failed");
+                const payload = await response.json();
+                translated.push(...payload.translations);
+            }
+            if (requestId !== translationRequestId) return;
+            translated.forEach((text, index) => { nodes[index].nodeValue = text; });
+            translationStatus.textContent = "Translated";
+        } catch (error) {
+            if (requestId === translationRequestId) translationStatus.textContent = "Translation unavailable";
+        }
+    };
+    const translate = async (language) => {
         const strings = translations[language] || translations.en;
         document.documentElement.lang = language;
         nav.querySelectorAll(".nav-links a, .nav-button").forEach((element) => {
@@ -43,14 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
             element.textContent = strings[original] || original;
         });
         localStorage.setItem("locobiz-language", language);
+        await translateStaticPage(language);
     };
     const savedTheme = localStorage.getItem("locobiz-theme") || "light";
     const savedLanguage = localStorage.getItem("locobiz-language") || "en";
     languageSelect.value = savedLanguage;
     setTheme(savedTheme);
-    translate(savedLanguage);
+    void translate(savedLanguage);
     themeButton.addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
-    languageSelect.addEventListener("change", () => translate(languageSelect.value));
+    languageSelect.addEventListener("change", () => void translate(languageSelect.value));
 });
 
 // Keyless Telangana address suggestions for the registration form. These can

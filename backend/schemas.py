@@ -112,3 +112,22 @@ class LocationSearchResponse(BaseModel):
     results: list[LocationResult]
     provider: str
     attribution: str
+
+
+class TranslationRequest(BaseModel):
+    texts: list[str] = Field(min_length=1, max_length=128)
+    source_language: str = Field(default="en", pattern=r"^[a-z]{2,3}$")
+    target_language: str = Field(pattern=r"^[a-z]{2,3}$")
+
+    @model_validator(mode="after")
+    def validate_text_lengths(self) -> "TranslationRequest":
+        if any(not text.strip() or len(text) > 2000 for text in self.texts):
+            raise ValueError("each text must contain 1-2000 characters")
+        return self
+
+
+class TranslationResponse(BaseModel):
+    translations: list[str]
+    source_language: str
+    target_language: str
+    provider: Literal["google", "bhashini"]

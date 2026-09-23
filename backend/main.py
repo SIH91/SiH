@@ -8,7 +8,8 @@ from .chat import reply
 from .engine import evaluate
 from .locations import search_locations
 from .narrative import enrich, is_configured
-from .schemas import ChatRequest, ChatResponse, EvaluationRequest, EvaluationResponse, LocationSearchResponse
+from .schemas import ChatRequest, ChatResponse, EvaluationRequest, EvaluationResponse, LocationSearchResponse, TranslationRequest, TranslationResponse
+from .translation import TranslationUnavailable, configured_provider, translate_texts
 
 app = FastAPI(title="LocoBiz AI API", version="0.1.0")
 allowed_origins = [origin.strip() for origin in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(",") if origin.strip()]
@@ -32,6 +33,27 @@ def ai_status() -> dict[str, bool | str]:
         "configured": is_configured(),
         "mode": "openai_responses" if is_configured() else "deterministic_only",
     }
+
+
+@app.get("/api/v1/language/status")
+def language_status() -> dict[str, str | bool | None]:
+    """Return translation availability without exposing any provider credentials."""
+    provider = configured_provider()
+    return {"configured": provider is not None, "provider": provider}
+
+
+@app.post("/api/v1/language/translate", response_model=TranslationResponse)
+async def translate_page_text(request: TranslationRequest) -> dict:
+    """Translate batches of UI text; keys remain on the server."""
+    try:
+        provider, translations = await translate_texts(request.texts, request.source_language, request.target_language)
+    except TranslationUnavailable as exc:
+        raise HTTPException(status_code=503, detail="Translation is not configured. Add a server-side Google or BHASHINI key.") from exc
+    except httpx.HTTPStatusError as exc:
+        raise HTTPException(status_code=502, detail="The translation provider rejected the request.") from exc
+    except (httpx.HTTPError, ValueError) as exc:
+        raise HTTPException(status_code=503, detail="Translation is temporarily unavailable. Please try again.") from exc
+    return {"translations": translations, "source_language": request.source_language, "target_language": request.target_language, "provider": provider}
 
 
 @app.post("/api/v1/chat", response_model=ChatResponse)

@@ -112,6 +112,7 @@ html[data-theme="dark"] .features-section { background: #121212; }
 .site-preferences { display: flex; align-items: center; gap: 8px; margin-left: auto; margin-right: 14px; }
 .theme-toggle, .language-select { border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); border-radius: var(--radius-sm); font-weight: 700; font-size: 13px; min-height: 36px; padding: 7px 10px; cursor: pointer; }
 .theme-toggle { min-width: 42px; }
+.translation-status { color: var(--text-muted); font-size: 11px; font-weight: 700; white-space: nowrap; }
 
 .schemes-section { padding: 90px 24px; background: var(--bg-muted); }
 .scheme-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }

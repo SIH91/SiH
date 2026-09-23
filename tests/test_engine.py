@@ -8,10 +8,15 @@ from backend.engine import evaluate
 from backend.chat import reply
 from backend.main import app
 from backend.narrative import enrich, is_configured
+from backend.translation import configured_provider
 from backend.schemas import EvaluationRequest
 
 
 class EvaluationEngineTests(unittest.TestCase):
+    def test_translation_provider_prefers_google_when_configured(self):
+        with patch.dict("os.environ", {"GOOGLE_TRANSLATE_API_KEY": "test-key", "BHASHINI_INFERENCE_API_KEY": "bhashini-key"}, clear=True):
+            self.assertEqual(configured_provider(), "google")
+
     def test_location_search_returns_normalised_indian_place(self):
         with patch("backend.main.search_locations", AsyncMock(return_value=[{
             "id": 2869870, "name": "Nashik", "label": "Nashik, Maharashtra, India", "admin1": "Maharashtra", "country": "India", "country_code": "IN", "latitude": 19.9975, "longitude": 73.7898, "timezone": "Asia/Kolkata", "population": 1486053,

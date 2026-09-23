@@ -23,6 +23,12 @@ Open `http://127.0.0.1:8000/docs` to test `POST /api/v1/evaluations/analyze`.
 
 Use `POST /api/v1/chat` for the website chat widget. A greeting such as `hey` receives a neutral LocoBiz greeting, never fabricated financial or scheme claims. Configure `CORS_ALLOWED_ORIGINS` with the website's origin before deployment.
 
+## Indian-language website translation
+
+The language selector covers all 22 Eighth Schedule languages: Assamese, Bengali, Bodo, Dogri, Gujarati, Hindi, Kannada, Kashmiri, Konkani, Maithili, Malayalam, Manipuri, Marathi, Nepali, Odia, Punjabi, Sanskrit, Santali, Sindhi, Tamil, Telugu, and Urdu.
+
+Set one translation credential server-side: `GOOGLE_TRANSLATE_API_KEY` for Google Cloud Translation, or `BHASHINI_INFERENCE_API_KEY` for Government of India BHASHINI. The default `TRANSLATION_PROVIDER=auto` prefers Google when both are configured. The browser only calls LocoBiz's `/api/v1/language/translate` endpoint; credentials never enter browser JavaScript or Git. If the frontend and backend have different origins, set a `locobiz-api-base` meta tag or `window.LOCOBIZ_API_BASE` to the backend origin and add the frontend host to `CORS_ALLOWED_ORIGINS`.
+
 ## Location fields
 
 Use `GET /api/v1/locations/search?q=Nashik` for business and entrepreneur location fields. Results default to India (`country_code=IN`) and return a display label, state, country, latitude, longitude, timezone, and population. Send the request only after at least two characters and save the selected result, not an arbitrary label. The service caches identical searches for 10 minutes and returns a clear error when the upstream provider is unavailable.
