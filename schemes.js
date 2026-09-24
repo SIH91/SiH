@@ -48,7 +48,7 @@ const schemes = [
         ],
 
          officialUrl:
-         "https://my.msme.gov.in/MyMsme/Reg/COM_PMEGPForm.aspx",
+         "https://my.msme.gov.in/MyMsme",
 
         source:
             "Khadi and Village Industries Commission (KVIC)"
